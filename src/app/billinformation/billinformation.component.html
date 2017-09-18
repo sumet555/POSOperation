@@ -1,10 +1,10 @@
 <div class="row grey darken-2 height100" >
   <div class=" col s12 l4 xl4  ">
     <div class="row ">
+      <a (click)="showMenu();" data-activates="mobile-demo" class="button-collapse hide-on-large-only"><i class="material-icons">menu</i></a> 
       <span class="right white-text">  Menu: {{menu}} ,Outlet: {{outlet}}</span>
     </div>
-    <div class="">
-
+    <div  class="show-on-large">
       <div *ngIf="pGroup" class="row ">
         <div class="col s6 m3 l4 xl4 pad" *ngFor="let item of groupData">
           <div class="card">

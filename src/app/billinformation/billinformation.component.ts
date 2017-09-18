@@ -68,7 +68,9 @@ export class BillinformationComponent implements OnInit {
   saletype: string;
   cover: number;
   total: number = 0;
+  pMenu:boolean=true;
   ngOnInit() {
+    
     this.activatedRoute.params.subscribe(params => {
       if (params['table']) {
         let table = params["table"];
@@ -137,5 +139,8 @@ export class BillinformationComponent implements OnInit {
   addNum(number) {
     let num = this.qty.toString() + number;
     this.qty = Number(num);
+  }
+  showMenu(){
+    this.pMenu=!this.pMenu;
   }
 }
