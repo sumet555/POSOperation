@@ -1,0 +1,59 @@
+.card-padding1{
+    padding:1px;
+}
+.card-padding0{
+    padding:0px;
+}
+.setmargin-top{
+    margin-top:10px;
+}
+.containerset{
+    margin-top:50px;
+}
+.font-menu{
+    font-size: 15px;
+}
+.height100{
+  height: 100vh;  
+}
+.pad{
+    padding: 0 0.25rem;
+}
+.margin0{
+    margin:0px;
+}
+.imgnumsize{
+    width:50px;
+    height: 50px;
+}
+input[type=text]{
+    margin:0px;
+}
+.pre {
+    background: no-repeat url("/assets/image/bb_pre1.png");
+    background-position: center;
+    width: 20px;
+    height:40px;
+    border: 0;
+    background-color:black;
+  }
+
+  .next {
+    background: no-repeat url("/assets/image/bb_next1.png");
+    background-position: center;
+    width: 10px;
+    height:40px;
+    border: 0;
+    background-color:black;
+  }
+  .cover {
+    background: no-repeat url("/assets/image/icon_customer_black.png");
+    background-position: center;
+    width: 10px;
+    height:40px;
+    border: 0;
+    background-color:grey lighten-1;
+  }
+  .detailheight{
+    height: 366px;
+  }

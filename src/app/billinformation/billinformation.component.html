@@ -1,0 +1,222 @@
+<div class="row">
+  <div class=" col s12 l4 xl4 red">
+    <div class="row ">
+      <span class="right white-text">  Menu: {{menu}} ,Outlet: {{outlet}}</span>
+    </div>
+    <div class="">
+
+      <div *ngIf="pGroup" class="row ">
+        <div class="col s6 m3 l4 xl4 pad" *ngFor="let item of groupData">
+          <div class="card">
+            <div class="card-image">
+              <img src="http://lorempixel.com/200/150/" alt="">
+            </div>
+            <div class="card-content card-padding0  center">
+              <a (click)="GroupClick(item.gname);"><span class="card-title font-menu btn grey darken-3">{{item.gname}}</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="pSubGroup" *ngIf="pSubGroup" class="row">
+        <div class="col s6 m3 l4 xl4 pad" *ngFor="let item of subGroup">
+          <div class="card">
+            <div class="card-image">
+              <img src="http://lorempixel.com/200/150/" alt="">
+            </div>
+            <div class="card-content card-padding0  center">
+              <a (click)="SubGroupClick(item.subname);"><span class="card-title font-menu btn grey darken-3">{{item.subname}}</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="pItem" *ngIf="pItem" class="row">
+        <div class="col s6 m3 l4 xl4 pad" *ngFor="let item of Item">
+          <div class="card">
+            <div class="card-image">
+              <img src="http://lorempixel.com/200/150/" alt="">
+            </div>
+            <div class="card-content card-padding0  center">
+              <a (click)="itemClick(item.itemname);"><span class="card-title font-menu btn grey darken-3">{{item.itemname}}</span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class=" col s8 l6 xl6 green">
+    <div>
+      <div class="col s12 m4">
+        Guest Chk# : <span>{{guestchk}}</span>
+      </div>
+      <div class="col s12 m8">
+        Order Date : <span>{{OrderDate | date: 'dd/MM/yyyy'}}</span>
+      </div>
+    </div>
+    <div>
+      <div class="col s12 m4">
+        Table : <span>{{tableid}}</span>
+      </div>
+      <div class="col s12 m8">
+        Mode : <span>{{salemode}}</span>
+      </div>
+    </div>
+    <div class="col s12">
+      Cover : <span>{{cover}}</span>
+    </div>
+    <div class="row col s12">
+      <div class="col s1">
+        <a class="btn pre col s1"></a>
+      </div>
+      <div class="col s10">
+        <a class="btn cover col s1"></a>
+      </div>
+      <div class="col s1">
+        <a class="btn next col s1"></a></div>
+    </div>
+    <div class="row">
+      <div class="card-padding0">
+        <img src="./assets/image/b_top.png" class="responsive-img col s3" alt="">
+        <img src="./assets/image/b_Up.png" class="responsive-img col s3" alt="">
+        <img src="./assets/image/b_down.png" class="responsive-img col s3" alt="">
+        <img src="./assets/image/b_bottom.png" class="responsive-img col s3" alt="">
+      </div>
+    </div>
+    <div class="row pink">
+      <div class="detailheight">
+        detail
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s10">
+        Total :
+      </div>
+      <div class="col s2 right">
+        {{total}}
+      </div>
+    </div>
+  </div>
+  <div class=" col s4 l2 xl2 blue">
+    <div class="row">
+      <!-- <span class="right white-text">  Menu: {{menu}} ,Outlet: {{outlet}}</span> -->
+    </div>
+    <div class="row">
+      <div class="row">
+        <div class="col s12 m6 xl6 card-padding0">
+          <div class="card margin0">
+            <div class="card-image">
+              <img (click)="gMenu();" src="./assets/image/icon_takeorder.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 xl6 card-padding0">
+          <div class="card margin0">
+            <div class="card-image">
+              <img src="./assets/image/icon_print.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 xl6 card-padding0">
+          <div class="card margin0">
+            <div class="card-image">
+              <img src="./assets/image/icon_function.png" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="grey lighten-5 z-depth-1">
+          <div class="row margin0">
+            <input id="txtqty" class="right-align" type="text" [(ngModel)]="qty" materialize="updateTextFields" minlength="1">
+          </div>
+          <div class="row margin0">
+            <div class="card margin0">
+              <div class="card-image col s4 card-padding0">
+                <img (click)="addNum(1);" src="./assets/image/b_1.jpg" alt="" class="responsive-img">
+                <!-- notice the "circle" class -->
+              </div>
+            </div>
+            <div class="card margin0">
+              <div class="card-image col s4 card-padding0">
+                <img (click)="addNum(2);" src="./assets/image/b_2.jpg" alt="" class="responsive-img">
+                <!-- notice the "circle" class -->
+              </div>
+            </div>
+            <div class="card margin0">
+              <div class="card-image col s4 card-padding0">
+                <img (click)="addNum(3);" src="./assets/image/b_3.jpg" alt="" class="responsive-img">
+                <!-- notice the "circle" class -->
+              </div>
+            </div>
+
+          </div>
+          <div class="row margin0">
+            <div class="card margin0">
+              <div class="card-image col s4 card-padding0">
+                <img (click)="addNum(4);" src="./assets/image/b_4.jpg" alt="" class="responsive-img">
+                <!-- notice the "circle" class -->
+              </div>
+            </div>
+            <div class="card margin0">
+              <div class="card-image col s4 card-padding0">
+                <img (click)="addNum(5);" src="./assets/image/b_5.jpg" alt="" class="responsive-img">
+                <!-- notice the "circle" class -->
+              </div>
+            </div>
+            <div class="card margin0">
+              <div class="card-image col s4 card-padding0">
+                <img (click)="addNum(6);" src="./assets/image/b_6.jpg" alt="" class="responsive-img">
+                <!-- notice the "circle" class -->
+              </div>
+            </div>
+          </div>
+          <div class="row margin0">
+            <div class="card margin0">
+              <div class="card-image col s4 card-padding0">
+                <img (click)="addNum(7);" src="./assets/image/b_7.jpg" alt="" class="responsive-img">
+                <!-- notice the "circle" class -->
+              </div>
+            </div>
+            <div class="card margin0">
+              <div class="card-image col s4 card-padding0">
+                <img (click)="addNum(8);" src="./assets/image/b_8.jpg" alt="" class="responsive-img">
+                <!-- notice the "circle" class -->
+              </div>
+            </div>
+            <div class="card margin0">
+              <div class="card-image col s4 card-padding0">
+                <img (click)="addNum(9);" src="./assets/image/b_9.jpg" alt="" class="responsive-img">
+                <!-- notice the "circle" class -->
+              </div>
+            </div>
+          </div>
+          <div class="row margin0">
+            <div class="card margin0">
+              <div class="card-image col s4 card-padding0">
+                <img (click)="clearNum();" src="./assets/image/b_CE.jpg" alt="" class="responsive-img">
+                <!-- notice the "circle" class -->
+              </div>
+            </div>
+            <div class="card margin0">
+              <div class="card-image col s4 card-padding0">
+                <img (click)="addNum(0);" src="./assets/image/b_0.jpg" alt="" class="responsive-img">
+                <!-- notice the "circle" class -->
+              </div>
+            </div>
+            <div class="card margin0">
+              <div class="card-image col s4 card-padding0">
+                <img (click)="delNum();" src="./assets/image/b_backspace.jpg" alt="" class="responsive-img">
+                <!-- notice the "circle" class -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+</div>
