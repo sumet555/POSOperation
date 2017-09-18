@@ -1,0 +1,41 @@
+<div class="imglogin">
+    <nav>
+        <div class="nav-wrapper grey darken-3">
+          <a href="#!" class="brand-logo center"><span >POS </span> <span class=" hide-on-med-and-down">Operation</span></a>
+          </div>
+        
+      </nav>
+
+<div class="container">
+    
+  <div class="centered-form">
+
+<div class="row">
+<div class="col xl6 m8 s10 offset-xl3 offset-m2 offset-s1  opacitybox">
+  <div class="row login-box login-inbox">
+  <div class="center responsive-img">
+    <img class="circle" src="http://lorempixel.com/200/200/" alt="">
+  </div>
+</div>
+    <div class="row">
+        <div class="input-field">
+           <i class="material-icons prefix">account_box</i>
+          <input id="email" type="email" class="validate" [(ngModel)]="login.email" materialize="updateTextFields" minlength="1" [placeholder]="'login.holderemail'| translate">
+          <label for="email" [attr.data-error]="'login.emailerror'| translate" data-success="">{{'login.email'| translate}}</label>
+        </div>
+      </div>
+      <div class="row ">
+      <div class="input-field">
+        <i class="material-icons prefix">lock</i>
+        <input id="password" type="password" class="validate" [(ngModel)]="login.password" materialize="updateTextFields" minlength="3" pattern="\d{3,8}" [placeholder]="'login.holderpassword'| translate"> 
+        <label for="password" [attr.data-error]="login.passerror">{{'login.password'| translate}}</label>
+      </div>
+      </div>
+      <div class="row">
+       <a class="waves-effect waves-light btn  green darken-3 col s12" (click)="doLogin()" >{{'login.loginbtn' | translate}}</a>
+    </div>
+  </div>
+<div>
+</div>
+</div>
+</div>

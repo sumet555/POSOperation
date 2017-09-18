@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="centered-form"> 
+        <div class="row" >
+            <div class="col s12 m6 xl2" *ngFor="let item of outletData">
+              <div class="card">
+                <div class="card-image">
+                  <img [src]="item.image"  (click)="outletClick(item.outletName)" alt="" >
+                  <!-- <a class="btn-floating halfway-fab waves-effect waves-light blue" (click)="outletClick(item.outletName)" ><i class="material-icons">edit</i></a> -->
+                </div>
+                <div class="card-content card-padding0 center">
+                    <a  (click)="outletClick(item.outletName)"><span class="card-title btn grey darken-3">{{item.outletName}}</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+{
+    "login":{
+        "email":"อีเมล",
+        "password":"รหัสผ่าน",
+        "emailerror":"อีเมลไม่ถูกต้อง",
+        "passerror":"รหัสผ่านไม่ถูกต้อง",
+        "holderemail":"กรอกอีเมล",
+        "holderpassword":"กรอกรหัสผ่าน",
+        "loginbtn":"ล็อกอิน"
+    }
+}

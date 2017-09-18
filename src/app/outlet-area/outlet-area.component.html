@@ -1,0 +1,31 @@
+
+<nav >
+        <div class="nav-wrapper grey darken-3">
+          <div class="container">
+          <a href="#!" class="brand-logo center">Outlet</a>
+          <a href="#" data-activates="mobile-demo" class="button-collapse show-on-large"><i class="material-icons">menu</i></a> 
+          <!-- <ul id="dropdown1" class="dropdown-content">
+              <li><a routerLink="/login"><i class="material-icons left">exit_to_app</i>Logout</a></li>
+            </ul> -->
+          <ul class="right">
+              <!-- <li><a class="dropdown-button" href="#!" data-activates="dropdown1">{{username}}<i class="material-icons right">arrow_drop_down</i></a></li> -->
+              <li><a (click)="changelang();"><i class="material-icons left">language</i>{{language}}</a></li>
+            </ul>
+          <ul class="side-nav navbar-fixed" id="mobile-demo">
+              <li><a routerLink="/transfershift"><i class="material-icons left">compare_arrows</i>Transfer Shift</a></li>
+              <li><a routerLink="/report"><i class="material-icons left">insert_chart</i>Report</a></li>
+              <li><a routerLink="/closeday"><i class="material-icons left">event_note</i>Close Day</a></li>
+              <li><a routerLink="/changedate"><i class="material-icons left">date_range</i>Change Date</a></li>
+              <li><a routerLink="/interface"><i class="material-icons left">featured_play_list</i>Interface</a></li>
+              <li><a routerLink="/inquiry"><i class="material-icons left">filter_frames</i>Inquiry</a></li>
+              <li><a routerLink="/reopen"><i class="material-icons left">chrome_reader_mode</i>ReOpen</a></li>
+              <li><a routerLink="/revoid"><i class="material-icons left">content_copy</i>ReVoid</a></li>
+              <li><a routerLink="/fulltax"><i class="material-icons left">content_paste</i>FullTax</a></li>
+              <li><a routerLink="/viewmenu"><i class="material-icons left">menu</i>View Menu</a></li>
+              <li><a routerLink="/login"><i class="material-icons left">exit_to_app</i>Logout</a></li>
+            </ul>
+        
+          </div>  </div>
+      </nav>
+
+      <router-outlet> </router-outlet>

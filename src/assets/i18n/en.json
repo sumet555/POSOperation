@@ -1,0 +1,11 @@
+{
+    "login":{
+        "email":"E-Mail",
+        "password":"Password",
+        "emailerror":"Please input valid email.",
+        "passerror":"Invalid Password",
+        "holderemail":"Input Email",
+        "holderpassword":"Input Password",
+        "loginbtn":"Login"
+    }
+}

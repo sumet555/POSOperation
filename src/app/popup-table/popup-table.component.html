@@ -1,0 +1,138 @@
+<div class="container containerset">
+  <div class="centered-form row">
+    <div class="col s12 m9">
+      <div class="row">
+        <div class="input-field col s4 m3 offset-m1">
+          All Guest
+        </div>
+        <div class="input-field">
+          <a class="grey darken-3 btn center col s2 m2 " (click)="numdes();">
+            <<</a>
+        </div>
+        <div class="input-field">
+          <input id="txtallguest" class="col s3 center" type="text" [(ngModel)]="allguestnum" materialize="updateTextFields" minlength="1">
+        </div>
+        <div class="input-field ">
+          <a class="btn grey darken-3 col s2 m2" (click)="numins();">>></a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="card-panel grey lighten-5 z-depth-1 col s8 m6 l4 offset-m4 offset-s3 offset-l5">
+          <div class="row margin0">
+            <div class="card margin0">
+              <div class="card-image  col s4 card-padding0">
+                <img (click)="addNum(1);" src="./assets/image/b_1.jpg" alt="" class="responsive-img">
+                <!-- notice the "circle" class -->
+              </div>
+            </div>
+            <div class="card margin0">
+              <div class="card-image  col s4 card-padding0">
+                <img (click)="addNum(2);" src="./assets/image/b_2.jpg" alt="" class="responsive-img">
+                <!-- notice the "circle" class -->
+              </div>
+            </div>
+            <div class="card margin0">
+              <div class="card-image  col s4 card-padding0">
+                <img (click)="addNum(3);" src="./assets/image/b_3.jpg" alt="" class="responsive-img">
+                <!-- notice the "circle" class -->
+              </div>
+            </div>
+          </div>
+          <div class="row margin0">
+            <div class="card margin0">
+              <div class="card-image  col s4 card-padding0">
+                <img (click)="addNum(4);" src="./assets/image/b_4.jpg" alt="" class="responsive-img">
+                <!-- notice the "circle" class -->
+              </div>
+            </div>
+            <div class="card margin0">
+              <div class="card-image  col s4 card-padding0">
+                <img (click)="addNum(5);" src="./assets/image/b_5.jpg" alt="" class="responsive-img">
+                <!-- notice the "circle" class -->
+              </div>
+            </div>
+            <div class="card margin0">
+              <div class="card-image  col s4 card-padding0">
+                <img (click)="addNum(6);" src="./assets/image/b_6.jpg" alt="" class="responsive-img">
+                <!-- notice the "circle" class -->
+              </div>
+            </div>
+          </div>
+          <div class="row margin0">
+            <div class="card margin0">
+              <div class="card-image  col s4 card-padding0">
+                <img (click)="addNum(7);" src="./assets/image/b_7.jpg" alt="" class="responsive-img">
+                <!-- notice the "circle" class -->
+              </div>
+            </div>
+            <div class="card margin0">
+              <div class="card-image  col s4 card-padding0">
+                <img (click)="addNum(8);" src="./assets/image/b_8.jpg" alt="" class="responsive-img">
+                <!-- notice the "circle" class -->
+              </div>
+            </div>
+            <div class="card margin0">
+              <div class="card-image  col s4 card-padding0">
+                <img (click)="addNum(9);" src="./assets/image/b_9.jpg" alt="" class="responsive-img">
+                <!-- notice the "circle" class -->
+              </div>
+            </div>
+          </div>
+          <div class="row margin0">
+            <div class="card margin0">
+              <div class="card-image  col s4 card-padding0">
+                <img (click)="clearNum();" src="./assets/image/b_CE.jpg" alt="" class="responsive-img">
+                <!-- notice the "circle" class -->
+              </div>
+            </div>
+            <div class="card margin0">
+              <div class="card-image  col s4 card-padding0">
+                <img (click)="addNum(0);" src="./assets/image/b_0.jpg" alt="" class="responsive-img">
+                <!-- notice the "circle" class -->
+              </div>
+            </div>
+            <div class="card margin0">
+              <div class="card-image  col s4 card-padding0">
+                <img (click)="delNum();" src="./assets/image/b_backspace.jpg" alt="" class="responsive-img">
+                <!-- notice the "circle" class -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col s12 m3">
+      <div class="row card-panel grey lighten-5 z-depth-1">
+        <div class="row  col s12">
+          <span class="flow-text">Open Bill</span>
+        </div>
+        <div class="row">
+          <a (click)="openBill(1);"><span class=" btn grey darken-3 col s12">Guest</span></a>
+        </div>
+        <div class="row">
+          <a (click)="openBill(2);"><span class="btn grey darken-3 col s12">Officer</span></a>
+        </div>
+        <div class="row">
+          <a (click)="openBill(3);"><span class="btn grey darken-3 col s12">Entertain</span></a>
+        </div>
+      </div>
+      <div class="row card-panel grey lighten-5 z-depth-1">
+        <div class="row col s12">
+          <span class="flow-text">Sale Type</span>
+        </div>
+        <div class="col s12">
+          <input id="txtsaletype" readonly type="text" [(ngModel)]="saletype" materialize="updateTextFields" minlength="1">
+        </div>
+        <div class="input-field ">
+          <a (click)="ChangeSaleMode();"><span class="btn grey darken-3 col 12">Change</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col offset-m5">
+        <a (click)="Close();"><span class="card-title btn red">Close</span></a>
+      </div>
+    </div>
+  </div>
