@@ -1,5 +1,5 @@
-<div class="row">
-  <div class=" col s12 l4 xl4 red">
+<div class="row grey darken-2 height100" >
+  <div class=" col s12 l4 xl4  ">
     <div class="row ">
       <span class="right white-text">  Menu: {{menu}} ,Outlet: {{outlet}}</span>
     </div>
@@ -9,7 +9,7 @@
         <div class="col s6 m3 l4 xl4 pad" *ngFor="let item of groupData">
           <div class="card">
             <div class="card-image">
-              <img src="http://lorempixel.com/200/150/" alt="">
+              <img (click)="GroupClick(item.gname);" [src]="item.image" alt="">
             </div>
             <div class="card-content card-padding0  center">
               <a (click)="GroupClick(item.gname);"><span class="card-title font-menu btn grey darken-3">{{item.gname}}</span></a>
@@ -22,7 +22,7 @@
         <div class="col s6 m3 l4 xl4 pad" *ngFor="let item of subGroup">
           <div class="card">
             <div class="card-image">
-              <img src="http://lorempixel.com/200/150/" alt="">
+              <img (click)="SubGroupClick(item.subname);" [src]="item.image" alt="">
             </div>
             <div class="card-content card-padding0  center">
               <a (click)="SubGroupClick(item.subname);"><span class="card-title font-menu btn grey darken-3">{{item.subname}}</span></a>
@@ -32,10 +32,10 @@
       </div>
 
       <div id="pItem" *ngIf="pItem" class="row">
-        <div class="col s6 m3 l4 xl4 pad" *ngFor="let item of Item">
+        <div class="col s6 m3 l4 xl4 pad" *ngFor="let item of item">
           <div class="card">
             <div class="card-image">
-              <img src="http://lorempixel.com/200/150/" alt="">
+              <img (click)="itemClick(item.itemname);" [src]="item.image" alt="">
             </div>
             <div class="card-content card-padding0  center">
               <a (click)="itemClick(item.itemname);"><span class="card-title font-menu btn grey darken-3">{{item.itemname}}</span></a>
@@ -43,19 +43,46 @@
           </div>
         </div>
       </div>
+
+      <div *ngIf="pfnBill" class="row ">
+          <div class="col s6 m3 l4 xl4 pad" *ngFor="let item of fnBillData">
+            <div class="card">
+              <div class="card-image">
+                <img  [src]="item.image" alt="">
+              </div>
+              <div class="card-content card-padding0  center">
+                <a ><span class="card-title font-menu btn grey darken-3">{{item.name}}</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="pfnItem" class="row ">
+            <div class="col s6 m3 l4 xl4 pad" *ngFor="let item of fnItemData">
+              <div class="card">
+                <div class="card-image">
+                  <img  [src]="item.image" alt="">
+                </div>
+                <div class="card-content card-padding0  center">
+                  <a ><span class="card-title font-menu btn grey darken-3">{{item.name}}</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
     </div>
   </div>
-  <div class=" col s8 l6 xl6 green">
+  <div class=" col s8 l6 xl6 white ">
     <div>
-      <div class="col s12 m4">
+      <div class="col s12 m4 ">
         Guest Chk# : <span>{{guestchk}}</span>
       </div>
       <div class="col s12 m8">
         Order Date : <span>{{OrderDate | date: 'dd/MM/yyyy'}}</span>
       </div>
     </div>
-    <div>
-      <div class="col s12 m4">
+    <div >
+      <div class="col s12 m4 ">
         Table : <span>{{tableid}}</span>
       </div>
       <div class="col s12 m8">
@@ -66,38 +93,50 @@
       Cover : <span>{{cover}}</span>
     </div>
     <div class="row col s12">
-      <div class="col s1">
         <a class="btn pre col s1"></a>
-      </div>
-      <div class="col s10">
         <a class="btn cover col s1"></a>
-      </div>
-      <div class="col s1">
-        <a class="btn next col s1"></a></div>
-    </div>
+     
+        <a class="btn next col s1 right"></a></div>
     <div class="row">
       <div class="card-padding0">
-        <img src="./assets/image/b_top.png" class="responsive-img col s3" alt="">
-        <img src="./assets/image/b_Up.png" class="responsive-img col s3" alt="">
-        <img src="./assets/image/b_down.png" class="responsive-img col s3" alt="">
-        <img src="./assets/image/b_bottom.png" class="responsive-img col s3" alt="">
+        <img src="./assets/image/b_top.png" class="responsive-img  " alt="">
+        <img src="./assets/image/b_Up.png" class="responsive-img  " alt="">
+        <img src="./assets/image/b_down.png" class="responsive-img " alt="">
+        <img src="./assets/image/b_bottom.png" class="responsive-img " alt="">
       </div>
     </div>
-    <div class="row pink">
-      <div class="detailheight">
-        detail
+    <div class="detailheight">
+      <div class="">
+          <table class="bordered" border="1">
+              <thead>
+                <tr class="row black white-text">
+                  <th class="col s8">Description</th>
+                  <th class="col s1">Qty</th>
+                  <th class="col s2 center">Price</th>
+                  <th class="col s1">Seat</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let bill of billData; let i=index;" >
+                  <th class="col s8">{{bill.ItemName}}</th>
+                  <th class="col s1">{{bill.Qty}}</th>
+                  <th class="col s2 right">{{bill.Price}}</th>
+                  <th class="col s1">{{bill.Seat}}</th>
+                </tr>
+              </tbody>
+            </table>
       </div>
     </div>
-    <div class="row">
+    <div class="row black">
       <div class="col s10">
-        Total :
+        <span class="white-text">Total :</span>
       </div>
-      <div class="col s2 right">
-        {{total}}
+      <div class="right">
+        <span class="white-text">{{total}}</span>
       </div>
     </div>
   </div>
-  <div class=" col s4 l2 xl2 blue">
+  <div class=" col s4 l2 xl2  grey darken-2">
     <div class="row">
       <!-- <span class="right white-text">  Menu: {{menu}} ,Outlet: {{outlet}}</span> -->
     </div>
@@ -120,7 +159,7 @@
         <div class="col s12 m6 xl6 card-padding0">
           <div class="card margin0">
             <div class="card-image">
-              <img src="./assets/image/icon_function.png" alt="">
+              <img (click)="fnBillClick();" src="./assets/image/icon_function.png" alt="">
             </div>
           </div>
         </div>
