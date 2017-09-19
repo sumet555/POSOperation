@@ -55,7 +55,7 @@ export class BillinformationComponent implements OnInit {
     , { "name": "Re-Print", "image": "/assets/image/BGbrown.jpg" }
     , { "name": "Cover", "image": "/assets/image/BGred.jpg" }
     , { "name": "Discount", "image": "/assets/image/BGgreen.jpg" }
-    , { "name": "Close Chk", "image": "/assets/image/BGbrown.jpg" }
+    , { "name": "CloseChk", "image": "/assets/image/BGbrown.jpg" }
   ];
   subGroup = [];
   item = [];
