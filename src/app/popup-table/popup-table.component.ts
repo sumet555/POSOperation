@@ -12,6 +12,7 @@ export class PopupTableComponent implements OnInit {
 saletype:string="Normal";
 allguestnum:number=0;
 table:string;
+tableData=[];
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       if (params['table']) {
@@ -56,6 +57,23 @@ openBill(typebill){
     else{
       salemode=3;
     }
+    let table = JSON.parse(localStorage.getItem("tableData"));
+    if (table == null) {
+      let tableAdd: any[] = [{ "table": this.table,"saletype":this.saletype,"salemode":salemode,"cover":this.allguestnum}]
+      table = tableAdd;
+    }
+    else {
+      let tableAdd = {
+        "table": this.table
+        ,"saletype":this.saletype
+        ,"salemode":salemode
+        ,"cover":this.allguestnum
+      }
+      table.push(tableAdd);
+    }
+    this.tableData = table;
+    localStorage.setItem("tableData", JSON.stringify(this.tableData));
     this.router.navigate(['', 'billinformation',salemode,this.saletype,this.table,this.allguestnum]);
 }
+
 }

@@ -58,5 +58,25 @@ input[type=text]{
   .detailheight{
     height: 466px;
   }
- 
+  .scroll {
+    height: 660px;
+    overflow-y: scroll;
+}
+tbody {
+    display:block;
+    height:440px;
+    overflow:auto;
+    }
+    thead, tbody tr {
+    display:table;
+    width:100%;
+    table-layout:fixed;
+    }
+    thead {
+    width: calc( 100% - 1em )
+    }
+    table {
+    width:100%;
+    }
+
  

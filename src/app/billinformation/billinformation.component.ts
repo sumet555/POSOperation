@@ -15,7 +15,11 @@ export class BillinformationComponent implements OnInit {
   groupData = [{ "gname": "Food", "image": "/assets/image/food.jpg" }
     , { "gname": "Bev", "image": "/assets/image/bev.jpg" }
     , { "gname": "Misc", "image": "/assets/image/BG-blue.jpg" }
-    , { "gname": "Wine", "image": "/assets/image/wine.jpg" }];
+    , { "gname": "Wine", "image": "/assets/image/wine.jpg" }
+    , { "gname": "dessert", "image": "/assets/image/BG-blue.jpg" }
+    , { "gname": "dessert", "image": "/assets/image/BG-blue.jpg" }
+    , { "gname": "dessert", "image": "/assets/image/BG-blue.jpg" }
+  ];
 
   subgroupData = [{ "gname": "Food", "subname": "Salad", "image": "/assets/image/salad.jpg" }
     , { "gname": "Food", "subname": "Soup", "image": "/assets/image/soup.jpg" },
@@ -64,17 +68,20 @@ export class BillinformationComponent implements OnInit {
   guestchk = "000001";
   OrderDate = new Date();
   tableid: string;
+  table: number;
   salemode: string;
   saletype: string;
   cover: number;
   total: number = 0;
   pMenu: boolean = true;
   billData = [];
+  outlet:string;
   ngOnInit() {
 
     this.activatedRoute.params.subscribe(params => {
       if (params['table']) {
         let table = params["table"];
+        this.table = table;
         let salemodeid = params["salemode"];
         this.tableid = table + "/01";
         this.saletype = params["saletype"];
@@ -83,10 +90,13 @@ export class BillinformationComponent implements OnInit {
       }
     });
     let item = JSON.parse(localStorage.getItem("billData"));
-    if (item != null) {
-      this.billData = item;
+    let billdata = item.filter(
+      item => item.table === this.table);
+    if (billdata != null) {
+      this.billData = billdata;
+      this.calTotal();
     }
-
+    this.outlet=localStorage.getItem("outlet");
   }
   SetSaleMode(id) {
     if (id == 1) {
@@ -139,22 +149,22 @@ export class BillinformationComponent implements OnInit {
     let item = JSON.parse(localStorage.getItem("billData"));
 
     if (item == null) {
-      let itemAdd: any[] = [{ "itemName": itemname, "Price": itemSelect[0].price, "qty": this.qty, "seat": 1, "table": this.tableid }]
+      let itemAdd: any[] = [{ "itemName": itemname, "Price": itemSelect[0].price*this.qty, "qty": this.qty, "seat": 1, "table": this.table }]
       item = itemAdd;
     }
     else {
       let itemAdd = {
         "itemName": itemname
-        , "Price": itemSelect[0].price
+        , "Price": itemSelect[0].price*this.qty
         , "qty": this.qty
         , "seat": 1
-        , "table": this.tableid
+        , "table": this.table
       }
       item.push(itemAdd);
     }
     this.billData = item;
     localStorage.setItem("billData", JSON.stringify(this.billData));
-
+    this.calTotal();
   }
   clearNum() {
     this.qty = 0;
@@ -176,8 +186,17 @@ export class BillinformationComponent implements OnInit {
     else {
       $("#pMenu").addClass("hide-on-med-and-down");
     }
-
   }
-
-
+  PrintClick(){
+    this.router.navigate(['', 'table',this.table]);
+  }
+  calTotal() {
+    let total = 0;
+    for (var i = 0; i < this.billData.length; i++) {
+        if (this.billData[i].Price) {
+            total += this.billData[i].Price;
+        }
+    }
+    this.total=total;
+}
 }

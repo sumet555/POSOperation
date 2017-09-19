@@ -1,11 +1,11 @@
 <div class="row grey darken-2 height100" >
-  <div class=" col s12 l4 xl4  ">
+  <div class=" col s12 l4 xl4 ">
     <div class="row ">
-      <a (click)="showMenu();"  class="button-collapse hide-on-large-only"><i class="material-icons">menu</i></a> 
+      <a (click)="showMenu();"  class="button-collapse hide-on-large-only"><i class="material-icons white-text">menu</i></a> 
       <span class="right white-text">  Menu: {{menu}} ,Outlet: {{outlet}}</span>
     </div>
-    <div  id="pMenu" class="hide-on-med-and-down" >
-      <div *ngIf="pGroup" class="row ">
+    <div  id="pMenu" class="hide-on-med-and-down scroll" >
+      <div *ngIf="pGroup" class="row">
         <div class="col s6 m3 l6 xl4 pad" *ngFor="let item of groupData">
           <div class="card">
             <div class="card-image">
@@ -18,7 +18,7 @@
         </div>
       </div>
 
-      <div id="pSubGroup" *ngIf="pSubGroup" class="row">
+      <div id="pSubGroup" *ngIf="pSubGroup" class="row ">
         <div class="col s6 m3 l6 xl4 pad" *ngFor="let item of subGroup">
           <div class="card">
             <div class="card-image">
@@ -31,7 +31,7 @@
         </div>
       </div>
 
-      <div id="pItem" *ngIf="pItem" class="row">
+      <div id="pItem" *ngIf="pItem" class="row ">
         <div class="col s6 m3 l6 xl4 pad" *ngFor="let item of item">
           <div class="card">
             <div class="card-image">
@@ -44,8 +44,8 @@
         </div>
       </div>
 
-      <div *ngIf="pfnBill" class="row ">
-          <div class="col s6 m3 l4 xl4 pad" *ngFor="let item of fnBillData">
+      <div *ngIf="pfnBill" class="row">
+          <div class="col s6 m3 l6 xl4 pad" *ngFor="let item of fnBillData">
             <div class="card">
               <div class="card-image">
                 <img  [src]="item.image" alt="">
@@ -94,9 +94,9 @@
     </div>
     <div class="row col s12">
         <a class="btn pre col s1"></a>
-        <a class="btn cover col s1"></a>
-     
-        <a class="btn next col s1 right"></a></div>
+        <a class="btn cover col s1" ></a>
+        <a class="btn next col s1 right"></a>
+      </div>
     <div class="row">
       <div class="card-padding0">
         <img src="./assets/image/b_top.png" class="responsive-img  " alt="">
@@ -107,7 +107,7 @@
     </div>
     <div class="detailheight">
       <div class="">
-          <table class="bordered" border="1">
+          <table class="bordered " border="1">
               <thead>
                 <tr class="row black white-text">
                   <th class="col s8">Description</th>
@@ -116,8 +116,8 @@
                   <th class="col s1">Seat</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr *ngFor="let bill of billData; let i=index;" >
+              <tbody >
+                <tr *ngFor="let bill of billData; let i=index;" class="highlight" style="height:30px;" >
                   <th class="col s8">{{bill.itemName}}</th>
                   <th class="col s1">{{bill.qty}}</th>
                   <th class="col s2 ">{{bill.Price}}</th>
@@ -132,7 +132,7 @@
         <span class="white-text">Total :</span>
       </div>
       <div class="right">
-        <span class="white-text">{{total}}</span>
+        <span class="white-text" >{{total}}</span>
       </div>
     </div>
   </div>
@@ -152,7 +152,7 @@
         <div class="col s12 m6 xl6 card-padding0">
           <div class="card margin0">
             <div class="card-image">
-              <img src="./assets/image/icon_print.png" alt="">
+              <img (click)="PrintClick();" src="./assets/image/icon_print.png" alt="">
             </div>
           </div>
         </div>
