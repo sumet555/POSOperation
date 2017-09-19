@@ -25,41 +25,41 @@ export class BillinformationComponent implements OnInit {
     , { "gname": "Wine", "subname": "Wine", "image": "/assets/image/wine.jpg" }
   ];
 
-  itemData = [{ "subname": "Salad", "itemname": "Chef Salad", "image": "/assets/image/salad.jpg" },
-  { "subname": "Soup", "itemname": "Soup", "image": "/assets/image/soup.jpg" },
-  { "subname": "Vodka", "itemname": "Vodka", "image": "/assets/image/vodka.jpg" },
-  { "subname": "Wine", "itemname": "Wine", "image": "/assets/image/wine.jpg" },
-  { "subname": "Misc", "itemname": "Misc", "image": "/assets/image/BG-blue.jpg" }
+  itemData = [{ "subname": "Salad", "itemname": "Chef Salad", "image": "/assets/image/salad.jpg", "price": 100 },
+  { "subname": "Soup", "itemname": "Soup", "image": "/assets/image/soup.jpg", "price": 120 },
+  { "subname": "Vodka", "itemname": "Vodka", "image": "/assets/image/vodka.jpg", "price": 200 },
+  { "subname": "Wine", "itemname": "Wine", "image": "/assets/image/wine.jpg", "price": 150 },
+  { "subname": "Misc", "itemname": "Misc", "image": "/assets/image/BG-blue.jpg", "price": 100 }
   ];
-  fnItemData=[
+  fnItemData = [
     { "name": "Condiment", "image": "/assets/image/BGred.jpg" }
-    ,{ "name": "Item Discount", "image": "/assets/image/BGbrown.jpg" }
-    ,{ "name": "Cooking Note", "image": "/assets/image/BGviolet.jpg" }
-    ,{ "name": "Delete Item", "image": "/assets/image/BGgrey.jpg" }
-    ,{ "name": "Change Qty", "image": "/assets/image/BGgreen.jpg" }
+    , { "name": "Item Discount", "image": "/assets/image/BGbrown.jpg" }
+    , { "name": "Cooking Note", "image": "/assets/image/BGviolet.jpg" }
+    , { "name": "Delete Item", "image": "/assets/image/BGgrey.jpg" }
+    , { "name": "Change Qty", "image": "/assets/image/BGgreen.jpg" }
   ];
-  fnBillData=[
+  fnBillData = [
     { "name": "NewBill", "image": "/assets/image/BG-blue.jpg" }
-    ,{ "name": "Payment", "image": "/assets/image/BGorange.jpg" }
-    ,{ "name": "Split Bill", "image": "/assets/image/BGbrown.jpg" }
-    ,{ "name": "VoidBill", "image": "/assets/image/BGviolet.jpg" }
-    ,{ "name": "TransferBill", "image": "/assets/image/BGred.jpg" }
-    ,{ "name": "AverageBill", "image": "/assets/image/BGgreen.jpg" }
-    ,{ "name": "SplitBill", "image": "/assets/image/BGviolet.jpg" }
-    ,{ "name": "Combine", "image": "/assets/image/BGred.jpg" }
-    ,{ "name": "Print", "image": "/assets/image/BGviolet.jpg" }
-    ,{ "name": "Re-Print", "image": "/assets/image/BGbrown.jpg" }
-    ,{ "name": "Cover", "image": "/assets/image/BGred.jpg" }
-    ,{ "name": "Discount", "image": "/assets/image/BGgreen.jpg" }
-    ,{ "name": "Close Chk", "image": "/assets/image/BGbrown.jpg" }
+    , { "name": "Payment", "image": "/assets/image/BGorange.jpg" }
+    , { "name": "Split Bill", "image": "/assets/image/BGbrown.jpg" }
+    , { "name": "VoidBill", "image": "/assets/image/BGviolet.jpg" }
+    , { "name": "TransferBill", "image": "/assets/image/BGred.jpg" }
+    , { "name": "AverageBill", "image": "/assets/image/BGgreen.jpg" }
+    , { "name": "SplitBill", "image": "/assets/image/BGviolet.jpg" }
+    , { "name": "Combine", "image": "/assets/image/BGred.jpg" }
+    , { "name": "Print", "image": "/assets/image/BGviolet.jpg" }
+    , { "name": "Re-Print", "image": "/assets/image/BGbrown.jpg" }
+    , { "name": "Cover", "image": "/assets/image/BGred.jpg" }
+    , { "name": "Discount", "image": "/assets/image/BGgreen.jpg" }
+    , { "name": "Close Chk", "image": "/assets/image/BGbrown.jpg" }
   ];
   subGroup = [];
   item = [];
   pGroup: boolean = true;
   pSubGroup: boolean = false;
   pItem: boolean = false;
-  pfnItem:boolean=false;
-  pfnBill:boolean=false;
+  pfnItem: boolean = false;
+  pfnBill: boolean = false;
   qty: number = 1;
   guestchk = "000001";
   OrderDate = new Date();
@@ -68,9 +68,10 @@ export class BillinformationComponent implements OnInit {
   saletype: string;
   cover: number;
   total: number = 0;
-  pMenu:boolean=true;
+  pMenu: boolean = true;
+  billData = [];
   ngOnInit() {
-    
+
     this.activatedRoute.params.subscribe(params => {
       if (params['table']) {
         let table = params["table"];
@@ -81,6 +82,11 @@ export class BillinformationComponent implements OnInit {
         this.SetSaleMode(salemodeid);
       }
     });
+    let item = JSON.parse(localStorage.getItem("billData"));
+    if (item != null) {
+      this.billData = item;
+    }
+
   }
   SetSaleMode(id) {
     if (id == 1) {
@@ -99,8 +105,8 @@ export class BillinformationComponent implements OnInit {
     this.pSubGroup = true;
     this.pGroup = false;
     this.pItem = false;
-    this.pfnItem=false;
-    this.pfnBill=false;
+    this.pfnItem = false;
+    this.pfnBill = false;
   }
   SubGroupClick(subname) {
     this.item = this.itemData.filter(
@@ -108,24 +114,46 @@ export class BillinformationComponent implements OnInit {
     this.pSubGroup = false;
     this.pGroup = false;
     this.pItem = true;
-    this.pfnItem=false;
-    this.pfnBill=false;
+    this.pfnItem = false;
+    this.pfnBill = false;
   }
   gMenu() {
     this.pSubGroup = false;
     this.pGroup = true;
     this.pItem = false;
-    this.pfnItem=false;
-    this.pfnBill=false;
+    this.pfnItem = false;
+    this.pfnBill = false;
   }
   fnBillClick() {
     this.pSubGroup = false;
     this.pGroup = false;
     this.pItem = false;
-    this.pfnItem=false;
-    this.pfnBill=true;
+    this.pfnItem = false;
+    this.pfnBill = true;
   }
   itemClick(itemname) {
+    let itemSelect = this.itemData.filter(
+      item => item.itemname === itemname);
+
+
+    let item = JSON.parse(localStorage.getItem("billData"));
+
+    if (item == null) {
+      let itemAdd: any[] = [{ "itemName": itemname, "Price": itemSelect[0].price, "qty": this.qty, "seat": 1, "table": this.tableid }]
+      item = itemAdd;
+    }
+    else {
+      let itemAdd = {
+        "itemName": itemname
+        , "Price": itemSelect[0].price
+        , "qty": this.qty
+        , "seat": 1
+        , "table": this.tableid
+      }
+      item.push(itemAdd);
+    }
+    this.billData = item;
+    localStorage.setItem("billData", JSON.stringify(this.billData));
 
   }
   clearNum() {
@@ -140,7 +168,16 @@ export class BillinformationComponent implements OnInit {
     let num = this.qty.toString() + number;
     this.qty = Number(num);
   }
-  showMenu(){
-    this.pMenu=!this.pMenu;
+  showMenu() {
+    this.pMenu = !this.pMenu;
+    if (!this.pMenu) {
+      $("#pMenu").removeClass("hide-on-med-and-down");
+    }
+    else {
+      $("#pMenu").addClass("hide-on-med-and-down");
+    }
+
   }
+
+
 }
