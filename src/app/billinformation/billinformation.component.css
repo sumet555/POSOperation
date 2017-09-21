@@ -31,7 +31,7 @@ input[type=text]{
     margin:0px;
 }
 .pre {
-    background: no-repeat url("/assets/image/bb_pre1.png");
+    background: no-repeat url("/dist/assets/image/bb_pre1.png");
     background-position: center;
     width: 20px;
     height:40px;
@@ -40,7 +40,7 @@ input[type=text]{
   }
 
   .next {
-    background: no-repeat url("/assets/image/bb_next1.png");
+    background: no-repeat url("/dist/assets/image/bb_next1.png");
     background-position: center;
     width: 10px;
     height:40px;
@@ -48,7 +48,7 @@ input[type=text]{
     background-color:black;
   }
   .cover {
-    background: no-repeat url("/assets/image/icon_customer_black.png");
+    background: no-repeat url("/dist/assets/image/icon_customer_black.png");
     background-position: center;
     width: 10px;
     height:40px;
