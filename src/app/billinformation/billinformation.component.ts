@@ -37,9 +37,9 @@ export class BillinformationComponent implements OnInit {
   ];
   fnItemData = [
     { "name": "Condiment", "image": "./assets/image/BGred.jpg" }
-    , { "name": "Item Discount", "image": "./assets/image/BGbrown.jpg" }
-    , { "name": "Cooking Note", "image": "./assets/image/BGviolet.jpg" }
-    , { "name": "Delete Item", "image": "./assets/image/BGgrey.jpg" }
+    , { "name": "Discount", "image": "./assets/image/BGbrown.jpg" }
+    , { "name": "CookingNote", "image": "./assets/image/BGviolet.jpg" }
+    , { "name": "DeleteItem", "image": "./assets/image/BGgrey.jpg" }
     , { "name": "Change Qty", "image": "./assets/image/BGgreen.jpg" }
   ];
   fnBillData = [
@@ -146,6 +146,13 @@ export class BillinformationComponent implements OnInit {
     this.pItem = false;
     this.pfnItem = false;
     this.pfnBill = true;
+  }
+  fnItemClick() {
+    this.pSubGroup = false;
+    this.pGroup = false;
+    this.pItem = false;
+    this.pfnItem = true;
+    this.pfnBill = false;
   }
   itemClick(itemname) {
     if (this.itemData == null) {return null;}
