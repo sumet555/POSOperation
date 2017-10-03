@@ -1,0 +1,38 @@
+<nav>
+      <div class="nav-wrapper blue-grey darken-2">
+        <a class="margin-LR">POS.Manager</a>
+        <a data-activates="mobile-demo" class="button-collapse show-on-large"><i class="material-icons">menu</i></a>
+        <ul class="right hide-on-med-and-down">
+          <li><i class="material-icons prefix">account_circle</i></li>
+          <li><label class="margin-setUser" for="prod_name">Maratree Supasing</label></li>
+          <li><a (click)="changLang();"><i class="material-icons left">language</i>{{currentLang}}</a></li>
+          <!-- <li><a (click)="changLangEN();"><img src="assets/images/flag-icons/usa.png"></a></li>
+          <li><a (click)="changLangTH();"><img src="assets/images/flag-icons/th.png"></a></li> -->
+          <li><a (click)="toLogin();"><i class="material-icons">exit_to_app</i></a></li>
+        </ul>
+        <ul class="side-nav" id="mobile-demo">
+          <!--Master  -->
+          <li class="no-padding">
+            <ul class="collapsible collapsible-accordion" *ngFor="let item1 of menuListData;">
+              <li class="bold" *ngIf="item1.mom=='0'" ><a class="collapsible-header waves-effect waves-cyan"><i class="material-icons">computer</i>{{item1.menuname}}</a>
+                <div class="collapsible-body">
+                  <li class="no-padding">
+                    <ul class="collapsible collapsible-accordion" *ngFor="let item2 of menuListData;">
+                      <li class="bold" *ngIf="item1.id==item2.mom"><a class="collapsible-header waves-effect waves-cyan"><i class="material-icons">tablet_mac</i>{{item2.menuname}}</a>
+                        <div class="collapsible-body">
+                          <ul *ngFor="let item3 of menuListData;">
+                            <li *ngIf="item2.id==item3.mom"><a routerLink="/Pmain/company-list">{{item3.menuname}}</a></li>
+                          </ul>
+                        </div>
+                        </li>
+                    </ul>
+                    </li>
+                </div>
+                </li>
+            </ul>
+            </li>
+           
+        </ul>
+      </div>
+    </nav>
+   

@@ -1,0 +1,161 @@
+<nav>
+    <div class="nav-wrapper grey darken-3">
+      <div class="">
+        <div class="row">
+          <a href="#!" class="brand-logo center"><span >SPLIT BILL </span> </a>
+          <ul class="right">
+            <li><a (click)="changelang();"><i class="material-icons left">language</i>{{language}}</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  
+<div class="row " style="padding-top: 10px;">
+<div class=" col s12 l5 xl5 white card-padding0 ">
+  <div class="boxdetail">
+          <div >
+            <div class="col s6 m5 l12 xl4">
+             <span class="fonttitle" > Guest Chk#:{{guestchk1}}</span>
+            </div>
+            <div class="col s6 m7 l12 xl7">
+               <span class="fonttitle">Order Date:{{OrderDate | date: 'dd/MM/yyyy'}}</span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s6 m4 l8 xl4">
+              <span class="fonttitle">Mode:{{salemode}}</span>
+            </div>
+          </div>
+          
+          
+         
+          <div class="detailheight">
+           
+                <table class="bordered " border="1">
+                    <thead >
+                      <tr class="row ">
+                        <th class="col s4 m5 fonttitle">Name</th>
+                        <th class="col s4 m3 center fonttitle">Qty</th>
+                        <th class="col s2 m2 center fonttitle">Each</th>
+                        <th class="col s2 center fonttitle">Price</th>
+                        <!-- <th class="col s1 center hide-on-small-only">Seat</th> -->
+                      </tr>
+                    </thead>
+                    <tbody  class="tbodyheight" >
+                      <tr *ngFor="let bill of billData; let i=index;" class="highlight" style="height:30px;"  >
+                        <th class="col s4 m5 fontbody">{{bill.itemName}}</th>
+                        <th class="col s4 m3 center fontbody">
+                           {{bill.qty}}
+                        </th>
+                        <th class="col s2 m2 fontbody"  style="text-align:right">{{bill.each}}</th>
+                        <th class="col s2 fontbody" style="text-align:right">{{bill.Price}}</th>
+                        <!-- <th class="col s1  hide-on-small-only fontbody"  style="text-align:center ">{{bill.seat}}</th> -->
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+            <div class="row ">
+                <div class="col s10">
+                  <span class=" fonttitle">Total :</span>
+                </div>
+                <div class="right">
+                  <span class=" fonttitle" >{{total}}</span>
+                </div>
+            </div>
+</div>
+            <div class="row" >
+            </div> 
+        </div>
+        <div class="col s12 l1">
+            <div class="center hide-on-med-and-down show-on-large" style="padding-top:100%">
+              <div style="padding-top:100%"></div>
+              <div class="row "><a class="btn col s12"><i class="material-icons">chevron_right</i></a></div>
+              <a class="btn col s12"><i class="material-icons">chevron_left</i></a>
+            </div>
+            <div class="center hide-on-med-and-up show-on-medium-and-down" >
+                <div class="row ">
+                  <div class="col  offset-s3 offset-m4"><a class="btn "><i class="material-icons">arrow_drop_up</i></a></div>
+                  <div class="col "><a class="btn " ><i class="material-icons">arrow_drop_down</i></a></div>
+                </div>
+                
+               
+              </div>
+        </div>
+        <div class=" col s12 l5 xl5 white card-padding0 ">
+          <div class="boxdetail">
+                  <div >
+                    <div class="col s6 m5 l12 xl4 ">
+                      <span class="fonttitle"> Guest Chk#:{{guestchk2}}</span>
+                    </div>
+                    <div class="col s6 m7 l12 xl7">
+                      <span class="fonttitle">Order Date:{{OrderDate | date: 'dd/MM/yyyy'}}</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col s6 m4 l8 xl4">
+                      <span class="fonttitle"> Mode:{{salemode}}</span>
+                    </div>
+                  </div>
+                  <div class="detailheight">
+                        <table class="bordered " border="1">
+                            <thead >
+                              <tr class="row ">
+                                <th class="col s4 m5 fonttitle">Name</th>
+                                <th class="col s4 m3 center fonttitle">Qty</th>
+                                <th class="col s2 m2 center fonttitle">Each</th>
+                                <th class="col s2 center fonttitle">Price</th>
+                                <!-- <th class="col s1 center hide-on-small-only">Seat</th> -->
+                              </tr>
+                            </thead>
+                            <tbody  class="tbodyheight" >
+                              <tr *ngFor="let bill of billData; let i=index;" class="highlight" style="height:30px;"  >
+                                <th class="col s4 m5 fontbody">{{bill.itemName}}</th>
+                                <th class="col s4 m3 center fontbody">
+                                   {{bill.qty}}
+                                </th>
+                                <th class="col s2 m2 fontbody"  style="text-align:right">{{bill.each}}</th>
+                                <th class="col s2 fontbody" style="text-align:right">{{bill.Price}}</th>
+                                <!-- <th class="col s1  hide-on-small-only fontbody"  style="text-align:center ">{{bill.seat}}</th> -->
+                              </tr>
+                            </tbody>
+                          </table>
+                          
+                         
+                    </div>
+                    <div class="row ">
+                        <div class="col s10">
+                          <span class="fonttitle">Total :</span>
+                        </div>
+                        <div class="right">
+                          <span class="fonttitle" >{{total}}</span>
+                        </div>
+                    </div>
+                </div>     
+                    <div class="row"  >
+                        <div class="row right col s12 m12" style="margin-top: 20px;" >
+                            <div class="row">
+                                <div class="col s3 right">
+                                    <a class="btn btn-padding  col s12 blue btnNewbill"><i class="material-icons " >add</i> NEW BILL</a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+</div>
+<div class="col s1">
+  
+          </div>
+</div>
+<div class="row">
+    <div class="row right col s12 " >
+        <div class="row">
+            <div class="col s4 m2 l2 xl1 offset-m4 offset-l4 offset-xl5">
+                <a class="btn btn-padding  col s11 blue btnNewbill">OK</a>
+        </div>
+        <div class="col m3 l2 xl1">
+            <a (click)="close();" class="btn btn-padding  col s11 red btnNewbill">cencel</a>
+    </div>
+        </div>
+            
+    </div>
+</div>

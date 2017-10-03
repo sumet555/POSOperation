@@ -29,6 +29,7 @@
 }
 input[type=text]{
     margin:0px;
+    font-size: 40px;
 }
 .pre {
     background: no-repeat url("/assets/image/bb_pre1.png");
@@ -55,8 +56,107 @@ input[type=text]{
     border: 0;
     background-color:grey lighten-1;
   }
-  .detailheight{
-    height: 466px;
+  
+  @media only screen and (min-width: 1200px) {
+    .detailheight{
+        height: 670px;
+      }
+      .tbodyheight{
+        height: 580px;
+      }
+      .padbtnentertain{
+        padding-top: 20px;
+      }
+  }
+  @media only screen 
+  and (min-width : 768px) 
+  and (max-width : 1024px){
+    .body {
+        display: flex;
+        min-height: 89vh;
+        flex-direction: column;
+      }
+      main {
+        flex: 1 0 auto;
+      }
+  }
+  /* @media (max-width: 991px) and (min-width: 768px){
+    .body {
+        display: flex;
+        min-height: 89vh;
+        flex-direction: column;
+      }
+      main {
+        flex: 1 0 auto;
+      }
+  } */
+  @media only screen and (min-width: 992px) {
+    .detailheight{
+        height: 190px;
+      }
+      .tbodyheight{
+        height: 260px;
+      }
+      
+      .padbtnentertain{
+        padding-top: 0px;
+      }
+      .body {
+        display: flex;
+        min-height: 89vh;
+        flex-direction: column;
+      }
+      main {
+        flex: 1 0 auto;
+      }
+  }
+  @media  (min-width: 768) and (max-width: 1024) {
+    .detailheight{
+        height: 330px;
+      }
+      .tbodyheight{
+        height: 300px;
+      }
+      .body {
+        display: flex;
+        min-height: 89vh;
+        flex-direction: column;
+      }
+      main {
+        flex: 1 0 auto;
+      }
+  }
+  @media only screen and (device-width: 768px) {
+    .detailheight{
+        height: 330px;
+      }
+      .tbodyheight{
+        height: 300px;
+      }
+      .body {
+        display: flex;
+        min-height: 89vh;
+        flex-direction: column;
+      }
+      main {
+        flex: 1 0 auto;
+      }
+  }
+  @media only screen  and (max-width: 320px) {
+    .detailheight{
+        height: 120px;
+      }
+      .tbodyheight{
+        height: 90px;
+      }
+      .body {
+        display: flex;
+        min-height: 89vh;
+        flex-direction: column;
+      }
+      main {
+        flex: 1 0 auto;
+      }
   }
   .scroll {
     height: 660px;
@@ -64,7 +164,7 @@ input[type=text]{
 }
 tbody {
     display:block;
-    height:440px;
+    /* height:440px; */
     overflow:auto;
     }
     thead, tbody tr {
@@ -78,5 +178,115 @@ tbody {
     table {
     width:100%;
     }
+    .search-wrapper input#search {
+        display: block;
+        font-size: 16px;
+        font-weight: 300;
+        width: 100%;
+        height: 45px;
+        margin: 0;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 0 45px 0 15px;
+        border: 0;
+    }
+    .search{
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 120px;
+        margin-top: 1px;
+        padding: 1px 0 0 0;
+        z-index: 2;
+    }
+    .btn-padding{
+        /* padding-right: 20px; */
+        /* padding-left: 20px; */
+        border-radius: 40px;
+    }
+    .footertable{
+        font-size: 26px;
+        font-weight: bold;
+    }
+.fontbody{
+    font-weight:normal;
+}
+.btnfn{
+    height: 50px;
+}
+.btnChange{
+    text-align:right;
+    color:red;
+    font-weight: bold;
+}
+.btnAmount{
+    text-align:right;
+    color:black;
+    font-weight: bold;
+}
+.btnBalance{
+    text-align:right;
+    color:blue;
+    font-weight: bold;
+}
+.iconfn{
+    padding-right: 5px;
+    padding-top:5px;
+}
+.btnNewbill{
+    font-size:17px;
+}
+.texttransform{
+    text-transform: inherit;
+}
+.btnfnfbill{
+    width:60px;
+    height: 60px;
+    padding-top:10px;
+    border-radius: 20%;
+}
+.btnnew{
+    width:50px;
+    height: 50px;
+    padding-top:5px;
+    border-radius: 50%;
+}
+.btndone{
+    width:80px;
+    height: 80px;
+    padding-top:20px;
+}
+.btnnum{
+    width:110px;
+    height: 95px;
+    text-align: center;
+    padding-top: 30px;
+    font-size: 40px;
+}
+.fontpayment{
+    color:#0d47a1;
+    font-weight: bold;
+}
+.fonttitle{
+    font-weight: bold;
+    font-size: 20px;
+}
+.boxdetail{
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    padding: 10px 15px 10px 10px;
+}
+.pad10{
+    padding:10px;
+}
+@media only screen and (min-width: 992px){
+    .footertable{
+        font-size: 20px;
+        font-weight: bold;
+    }
+}
 
+  
+
+
+   
  

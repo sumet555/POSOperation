@@ -1,93 +1,209 @@
-<div class="row grey darken-2 height100" >
-  <div class=" col s12 l4 xl4 ">
-      
-    <div class="row ">
-      <a (click)="showMenu();"  class="button-collapse hide-on-large-only"><i class="material-icons white-text">menu</i></a> 
-      <span class="right white-text"> Outlet: {{outlet}}</span>
+<div class="body">
+  <div class="row ">
+    <div class="row col s12 l6 xl6 white card-padding0 pad10">
+ <div class="boxdetail">
+      <div>
+        <div class="col s6 m5 l12 xl4 ">
+          Guest Chk# : <span>{{guestchk}}</span>
+        </div>
+        <div class="col s6 m7 l12 xl7">
+          Order Date : <span>{{OrderDate | date: 'dd/MM/yyyy'}}</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s6 m4 l4 xl4">
+          Table : <span>{{tableid}}</span>
+        </div>
+        <div class="col s6 m4 l8 xl4">
+          Mode : <span>{{salemode}}</span>
+        </div>
+        <div class="col s12 m4 l12 xl4">
+          Cover : <span>{{cover}}</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s1 offset-s11 offset-l10 offset-xl11">
+          <!-- <a class="btn-floating btn right" ><i class="material-icons">add</i> New Bill</a> -->
+          <a class="btn-floating btn btnnew green accent-4 " (click)="gMenu();"><i class="material-icons " >add</i></a>
+        </div>
+      </div>
+
+     
+        <div class="detailheight">
+
+          <table class="bordered " border="1">
+            <thead>
+              <tr class="row ">
+                <th class="col s4 m5">Name</th>
+                <th class="col s4 m3 center">Qty</th>
+                <th class="col s2 m2 center">Each</th>
+                <th class="col s2 center">Price</th>
+                <!-- <th class="col s1 center hide-on-small-only">Seat</th> -->
+              </tr>
+            </thead>
+            <tbody class="tbodyheight">
+              <tr *ngFor="let bill of billData; let i=index;" class="highlight" style="height:30px;">
+                <th class="col s4 m5 fontbody">{{bill.itemName}}</th>
+                <th class="col s4 m3 center fontbody">
+                  <a (click)="numdes(bill.itemName);"><i class="material-icons" style="padding-right: 5px;">remove_circle_outline</i></a>                  {{bill.qty}}
+                  <a (click)="numins(bill.itemName);"><i class="material-icons" style="padding-left: 5px;">add_circle_outline</i></a>
+                </th>
+                <th class="col s2 m2 fontbody" style="text-align:right">{{bill.each}}</th>
+                <th class="col s2 fontbody" style="text-align:right">{{bill.Price}}</th>
+                <!-- <th class="col s1  hide-on-small-only fontbody"  style="text-align:center ">{{bill.seat}}</th> -->
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="row ">
+            <div class="col s3">
+                <span class="footertable">SubTotal:</span>
+              </div>
+              <div class="col s3">
+                  <span class="footertable">{{total}}</span>
+                </div>
+          <div class="col s3">
+            <span class="footertable">Total:</span>
+          </div>
+          <div class="right">
+            <span class="footertable btnAmount" style="font-size: 40px;">{{total}}</span>
+          </div>
+        </div>
+        <div class="row ">
+            <div class="col s3">
+                <span class="footertable">Discount:</span>
+              </div>
+              <div class="col s3">
+                  <span class="footertable">0.00</span>
+                </div>
+          <div class="col s3">
+            <span class="footertable">Balance:</span>
+          </div>
+          <div class="right">
+            <span class="footertable btnAmount">{{total}}</span>
+          </div>
+        </div>
+        <div class="row">
+          <div class=" ">
+            <!-- <div class="col s4 m4 l4 ">
+                        <a class="btn btn-padding col s12"> Hold Order</a>
+                    </div>-->
+            <div class="col s5 xl4 offset-s2 offset-xl4">
+                <a (click)="SplitBill();" class="btn btn-padding col s12"> Split Bill</a>
+             </div> 
+            <div class="col s5 xl4 ">
+              <a class="btn btn-padding col s12"> Send Order</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="row right col s12 m12" style="margin-top: 20px;">
+          <div class="col s4  xl4 hide-on-large-only hide-on-med-and-down">
+            <a class="btn btn-padding  col s12 xl12 blue btnfn" (click)="gMenu();"><i class="material-icons iconfn">collections</i>Take Order</a>
+          </div>
+          <div class="col s6 l6 xl4 offset-xl4">
+            <a class="btn btn-padding  col s12 xl12 blue btnfn hide-on-small-only" (click)="PrintClick();"><i class="material-icons iconfn">print</i> Print Bill</a>
+            <a class="btn btn-padding  col s12 xl12 blue hide-on-med-and-up" (click)="PrintClick();">Print Bill</a>
+          </div>
+          <div class="col s6 l6 xl4 ">
+            <a class="btn btn-padding  col s12 xl12 blue btnfn hide-on-small-only " (click)="PaymentClick();" (window:resize)="onResize($event)"><i class="material-icons iconfn" >payment</i> Payment</a>
+            <a class="btn btn-padding  col s12 xl12 blue hide-on-med-and-up" (click)="PaymentClick();">Payment</a>
+          </div>
+        </div>
+      </div>
+
+
     </div>
-  
-    <div  id="pMenu" class="hide-on-med-and-down scroll" >
-        
-      <div *ngIf="pGroup" class="row">
+    <div class="row col s12 l6 xl6 card-padding0">
+
+      <!-- <div class="row ">
+      <a (click)="showMenu();"  class="button-collapse hide-on-large-only"><i class="material-icons ">menu</i></a> 
+      <span class="right footertable"> Outlet: <span class="blue-text">{{outlet}}</span></span>
+    </div> -->
+
+      <div id="pMenu" *ngIf="pMenu" class="hide-on-med-and-down ">
+
+        <div *ngIf="pGroup" class="row">
           <div class="row">
-              <nav class="navwidth ">
+            <!-- <nav class="navwidth " >
                   <div class="nav-wrapper">
                     <form>
                       <div class="input-field ">
                         <input id="search" name="search" type="search"  [(ngModel)]="searchText" required>
                         <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                        <i class="material-icons">find_in_page</i>
+                        <i class="material-icons">search</i>
                       </div>
                     </form>
                   </div>
-                </nav>
+                </nav> -->
           </div>
-        <div class="col s6 m3 l6 xl4 pad" *ngFor="let item of groupData">
-          <div class="card">
-            <div class="card-image">
-              <img (click)="GroupClick(item.gname);" [src]="item.image" alt="">
-            </div>
-            <div class="card-content card-padding0  center">
-              <a (click)="GroupClick(item.gname);"><span class="card-title font-menu card-padding0 btn grey darken-3">{{item.gname}}</span></a>
+          <div class="col s6 m3 l4 xl3 pad" *ngFor="let item of groupData">
+            <div class="card">
+              <div class="card-image">
+                <img (click)="GroupClick(item.gname);" [src]="item.image" alt="">
+              </div>
+              <div class="card-content card-padding0  center">
+                <a (click)="GroupClick(item.gname);"><span class="card-title font-menu card-padding0 btn grey darken-3">{{item.gname}}</span></a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div id="pSubGroup" *ngIf="pSubGroup" class="row ">
+        <div id="pSubGroup" *ngIf="pSubGroup" class="row ">
           <div class="row">
-              <nav class="navwidth ">
-                  <div class="nav-wrapper">
-                    <form>
-                      <div class="input-field ">
-                        <input id="search" name="search" type="search"  [(ngModel)]="searchText" required>
-                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                        <i class="material-icons">find_in_page</i>
-                      </div>
-                    </form>
+            <!-- <nav class="navwidth ">
+              <div class="nav-wrapper">
+                <form>
+                  <div class="input-field ">
+                    <input id="search" name="search" type="search" [(ngModel)]="searchText" required>
+                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                    <i class="material-icons">find_in_page</i>
                   </div>
-                </nav>
+                </form>
+              </div>
+            </nav> -->
           </div>
-        <div class="col s6 m3 l6 xl4 pad" *ngFor="let item of subGroup">
-          <div class="card">
-            <div class="card-image">
-              <img (click)="SubGroupClick(item.subname);" [src]="item.image" alt="">
-            </div>
-            <div class="card-content card-padding0  center">
-              <a (click)="SubGroupClick(item.subname);"><span class="card-title font-menu card-padding0 btn grey darken-3">{{item.subname}}</span></a>
+          <div class="col s4 m3 l4 xl3 pad" *ngFor="let item of subGroup">
+            <div class="card">
+              <div class="card-image">
+                <img (click)="SubGroupClick(item.subname);" [src]="item.image" alt="">
+              </div>
+              <div class="card-content card-padding0  center">
+                <a (click)="SubGroupClick(item.subname);"><span class="card-title font-menu card-padding0 btn grey darken-3">{{item.subname}}</span></a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div id="pItem" *ngIf="pItem" class="row ">
+        <div id="pItem" *ngIf="pItem" class="row ">
           <div class="row">
-              <nav class="navwidth ">
-                  <div class="nav-wrapper">
-                    <form>
-                      <div class="input-field ">
-                        <input id="search" name="search" type="search"  [(ngModel)]="searchText" required>
-                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                        <i class="material-icons">find_in_page</i>
-                      </div>
-                    </form>
+            <!-- <nav class="navwidth ">
+              <div class="nav-wrapper">
+                <form>
+                  <div class="input-field ">
+                    <input id="search" name="search" type="search" [(ngModel)]="searchText" required>
+                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                    <i class="material-icons">find_in_page</i>
                   </div>
-                </nav>
+                </form>
+              </div>
+            </nav> -->
           </div>
-        <div class="col s6 m3 l6 xl4 pad" *ngFor="let item of item">
-          <div class="card">
-            <div class="card-image">
-              <img (click)="itemClick(item.itemname);" [src]="item.image" alt="">
-            </div>
-            <div class="card-content card-padding0  center">
-              <a (click)="itemClick(item.itemname);"><span class="card-title font-menu card-padding0 btn grey darken-3">{{item.itemname}}</span></a>
+          <div class="col s6 m3 l4 xl3 pad" *ngFor="let item of item">
+            <div class="card">
+              <div class="card-image">
+                <img (click)="itemClick(item.itemname);" [src]="item.image" alt="">
+              </div>
+              <div class="card-content card-padding0  center">
+                <a (click)="itemClick(item.itemname);"><span class="card-title font-menu card-padding0 btn grey darken-3">{{item.itemname}}</span></a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div *ngIf="pfnBill" class="row">
-          <div class="col s6 m3 l6 xl4 pad" *ngFor="let item of fnBillData">
+        <div *ngIf="pfnBill" class="row">
+          <!-- <div class="col s6 m3 l6 xl3 pad" *ngFor="let item of fnBillData">
             <div class="card">
               <div class="card-image">
                 <img  [src]="item.image" alt="">
@@ -96,207 +212,210 @@
                 <a ><span class="card-title font-menu card-padding0 btn grey darken-3">{{item.name}}</span></a>
               </div>
             </div>
+          </div> -->
+          <div class="col s12 pad">
+            <div class="container">
+              <div class="row">
+                <div class="col s4 fonttitle">
+                  Balance
+                </div>
+                <div class="col s4 fonttitle">
+                  Amount
+                </div>
+                <div class="col s4 fonttitle">
+                  Change
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field">
+                  <div class="col s4 flow-text">
+                    <input id="txtbalance" type="text" class="btnBalance" [(ngModel)]="balance" readonly style="text-align:right" materialize="updateTextFields"
+                      minlength="1">
+                  </div>
+                  <div class="col s4 flow-text">
+                    <input id="txtamount" type="text" class="btnAmount" [(ngModel)]="amount" (change)="Change();" style="text-align:right" materialize="updateTextFields" minlength="1">
+                  </div>
+
+                  <div class="col s4 flow-text">
+                    <input id="txtchange" type="text" class="btnChange" [(ngModel)]="change" readonly  materialize="updateTextFields" minlength="1">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="card-panel grey lighten-5 z-depth-1 col s9 ">
+                  <div class="row margin0">
+                    <div class="card margin0">
+                      <div class="card-image  col s4 card-padding0">
+                        <img (click)="addNum(1);" src="./assets/image/b_1.jpg" alt="" class="responsive-img">
+                        <!-- <a (click)="addNum(1);" class="btn center btnnum white  blue-text lighten-1-text">1</a> -->
+                      </div>
+
+                    </div>
+                    <div class="card margin0">
+                      <div class="card-image  col s4 card-padding0">
+                        <img (click)="addNum(2);" src="./assets/image/b_2.jpg" alt="" class="responsive-img">
+                        <!-- notice the "circle" class -->
+                        <!-- <a (click)="addNum(2);" class="btn center btnnum white  blue-text lighten-1-text">2</a> -->
+                      </div>
+                    </div>
+                    <div class="card margin0">
+                      <div class="card-image  col s4 card-padding0">
+                        <img (click)="addNum(3);" src="./assets/image/b_3.jpg" alt="" class="responsive-img">
+                        <!-- notice the "circle" class -->
+                        <!-- <a (click)="addNum(3);" class="btn center btnnum white  blue-text lighten-1-text">3</a> -->
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="row margin0">
+                    <div class="card margin0">
+                      <div class="card-image  col s4 card-padding0">
+                        <img (click)="addNum(4);" src="./assets/image/b_4.jpg" alt="" class="responsive-img">
+                        <!-- notice the "circle" class -->
+                        <!-- <a (click)="addNum(4);" class="btn center btnnum white  blue-text lighten-1-text">4</a> -->
+                      </div>
+                    </div>
+                    <div class="card margin0">
+                      <div class="card-image  col s4 card-padding0">
+                        <img (click)="addNum(5);" src="./assets/image/b_5.jpg" alt="" class="responsive-img">
+                        <!-- notice the "circle" class -->
+                        <!-- <a (click)="addNum(5);" class="btn center btnnum white  blue-text lighten-1-text">5</a> -->
+                      </div>
+                    </div>
+                    <div class="card margin0">
+                      <div class="card-image  col s4 card-padding0">
+                        <img (click)="addNum(6);" src="./assets/image/b_6.jpg" alt="" class="responsive-img">
+                        <!-- notice the "circle" class -->
+                        <!-- <a (click)="addNum(6);" class="btn center btnnum white  blue-text lighten-1-text">6</a> -->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row margin0">
+                    <div class="card margin0">
+                      <div class="card-image  col s4 card-padding0">
+                        <img (click)="addNum(7);" src="./assets/image/b_7.jpg" alt="" class="responsive-img">
+                        <!-- notice the "circle" class -->
+                        <!-- <a (click)="addNum(7);" class="btn center btnnum white  blue-text lighten-1-text">7</a> -->
+                      </div>
+                    </div>
+                    <div class="card margin0">
+                      <div class="card-image  col s4 card-padding0">
+                        <img (click)="addNum(8);" src="./assets/image/b_8.jpg" alt="" class="responsive-img">
+                        <!-- notice the "circle" class -->
+                        <!-- <a (click)="addNum(8);" class="btn center btnnum white  blue-text lighten-1-text">8</a> -->
+                      </div>
+                    </div>
+                    <div class="card margin0">
+                      <div class="card-image  col s4 card-padding0">
+                        <img (click)="addNum(9);" src="./assets/image/b_9.jpg" alt="" class="responsive-img">
+                        <!-- notice the "circle" class -->
+                        <!-- <a (click)="addNum(9);" class="btn center btnnum white  blue-text lighten-1-text">9</a> -->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row margin0">
+                    <div class="card margin0">
+                      <div class="card-image  col s4 card-padding0">
+                        <img (click)="clearNum();" src="./assets/image/b_CE.jpg" alt="" class="responsive-img">
+                        <!-- notice the "circle" class -->
+                        <!-- <a (click)="clearNum();" class="btn center btnnum white  blue-text lighten-1-text"><i class="material-icons  blue-text lighten-1-text">clear</i></a> -->
+                      </div>
+                    </div>
+                    <div class="card margin0">
+                      <div class="card-image  col s4 card-padding0">
+                        <img (click)="addNum(0);" src="./assets/image/b_0.jpg" alt="" class="responsive-img">
+                        <!-- <a (click)="addNum(0);" class="btn center btnnum white  blue-text lighten-1-text">0</a> -->
+                        <!-- notice the "circle" class -->
+                      </div>
+                    </div>
+                    <div class="card margin0">
+                      <div class="card-image  col s4 card-padding0">
+                        <img (click)="delNum();" src="./assets/image/b_backspace.jpg" alt="" class="responsive-img">
+                        <!-- notice the "circle" class -->
+                        <!-- <a (click)="delNum();" class="btn center btnnum white  blue-text lighten-1-text">del</a> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col s3 center">
+                    <div class="col s12">
+                      <a class="btn-floating btn btnfnfbill white"><i class="material-icons  blue-text lighten-1-text">payment</i></a>
+                    </div>
+                    <span class="fontpayment">Cash</span>
+                  </div>
+                <div class="row col s3 center">
+                  <div class="col s12">
+                    <a class="btn-floating btn btnfnfbill white"><i class="material-icons  blue-text lighten-1-text">payment</i></a>
+                  </div>
+                  <span class="fontpayment">Credit</span>
+                </div>
+                <div class="row col s3 center">
+                  <div class="col s12">
+                    <a class="btn-floating btn btnfnfbill white"><i class="material-icons  blue-text lighten-1-text">payment</i></a>
+                  </div>
+                  <span class="fontpayment">Officer</span>
+                </div>
+                <!-- <div class="row col s3 center">
+                  <div class="col s12">
+                    <a class="btn-floating btn btnfnfbill white"><i class="material-icons   blue-text lighten-1-text">payment</i></a>
+                  </div>
+                  <span class="fontpayment">Entertain</span>
+                </div> -->
+                <div class="row col s3 center">
+                  <div class="col s12">
+                    <a class="btn-floating btn btnfnfbill white"><i class="material-icons  blue-text lighten-1-text">payment</i></a>
+                  </div>
+                  <span class="fontpayment">Hotel Guest</span>
+                </div>
+                <!-- <div class="row col s3 ">
+                  <div class="col s12">
+                    <a class="col btn-floating btn btndone green darken-1">Done</a>
+                  </div>
+                </div> -->
+              </div>
+              <div class="row">
+                  <div class="row col s3 offset-xl9 offset-l8">
+                      <div class="col s12 ">
+                        <a class="col btn-floating btn btndone green darken-1">Done</a>
+                      </div>
+                    </div>
+                <!-- <div class="col s12 container">
+                    <a class="col btn-floating btn btndone blue right">Done</a>
+                  </div> -->
+                <!-- <div class="col s6 l4 xl3 ">
+                <a class="btn btn-padding  col s12 xl12 blue texttransform">Cash</a>
+              </div>
+              <div class="col s6 l4 xl3 ">
+                <a class="btn btn-padding  col s12 xl12 blue texttransform">Credit</a>
+              </div>
+              <div class="col s6 l4 xl3 ">
+                <a class="btn btn-padding  col s12 xl12 blue texttransform">Officer</a>
+              </div>
+              <div class="col s6 l6 xl3 padbtnentertain">
+                <a class="btn btn-padding ard-padding0 col s12 xl12 blue texttransform">Entertain</a>
+              </div> -->
+
+              </div>
+
+            </div>
           </div>
         </div>
 
         <div *ngIf="pfnItem" class="row ">
-            <div class="col s6 m3 l6 xl4 pad" *ngFor="let item of fnItemData">
-              <div class="card">
-                <div class="card-image">
-                  <img  [src]="item.image" alt="">
-                </div>
-                <div class="card-content card-padding0  center">
-                  <a ><span class="card-title font-menu card-padding0 btn grey darken-3">{{item.name}}</span></a>
-                </div>
+          <div class="col s6 m3 l6 xl4 pad" *ngFor="let item of fnItemData">
+            <div class="card">
+              <div class="card-image">
+                <img [src]="item.image" alt="">
               </div>
-            </div>
-          </div>
-
-    </div>
-  </div>
-  <div class=" col s8 l6 xl6 white ">
-    <div>
-      <div class="col s12 m4 ">
-        Guest Chk# : <span>{{guestchk}}</span>
-      </div>
-      <div class="col s12 m8">
-        Order Date : <span>{{OrderDate | date: 'dd/MM/yyyy'}}</span>
-      </div>
-    </div>
-    <div >
-      <div class="col s12 m4 ">
-        Table : <span>{{tableid}}</span>
-      </div>
-      <div class="col s12 m8">
-        Mode : <span>{{salemode}}</span>
-      </div>
-    </div>
-    <div class="col s12">
-      Cover : <span>{{cover}}</span>
-    </div>
-    <div class="row col s12">
-        <a class="btn pre col s1"></a>
-        <a class="btn cover col s1" ></a>
-        <a class="btn next col s1 right"></a>
-      </div>
-    <div class="row">
-      <div class="card-padding0">
-        <img src="./assets/image/b_top.png" class="responsive-img  " alt="">
-        <img src="./assets/image/b_Up.png" class="responsive-img  " alt="">
-        <img src="./assets/image/b_down.png" class="responsive-img " alt="">
-        <img src="./assets/image/b_bottom.png" class="responsive-img " alt="">
-      </div>
-    </div>
-    <div class="detailheight">
-      <div class="">
-          <table class="bordered " border="1">
-              <thead>
-                <tr class="row black white-text">
-                  <th class="col s8">Description</th>
-                  <th class="col s1">Qty</th>
-                  <th class="col s2 ">Price</th>
-                  <th class="col s1">Seat</th>
-                </tr>
-              </thead>
-              <tbody  >
-                <tr *ngFor="let bill of billData; let i=index;" class="highlight" style="height:30px;" (click)="fnItemClick();" >
-                  <th class="col s8">{{bill.itemName}}</th>
-                  <th class="col s1">{{bill.qty}}</th>
-                  <th class="col s2 ">{{bill.Price}}</th>
-                  <th class="col s1">{{bill.seat}}</th>
-                </tr>
-              </tbody>
-            </table>
-      </div>
-    </div>
-    <div class="row black">
-      <div class="col s10">
-        <span class="white-text">Total :</span>
-      </div>
-      <div class="right">
-        <span class="white-text" >{{total}}</span>
-      </div>
-    </div>
-  </div>
-  <div class=" col s4 l2 xl2  grey darken-2">
-    <div class="row">
-      <!-- <span class="right white-text">  Menu: {{menu}} ,Outlet: {{outlet}}</span> -->
-    </div>
-    <div class="row">
-      <div class="row">
-        <div class="col s12 m6 xl6 card-padding0">
-          <div class="card margin0">
-            <div class="card-image">
-              <img (click)="gMenu();" src="./assets/image/icon_takeorder.png" alt="">
-            </div>
-          </div>
-        </div>
-        <div class="col s12 m6 xl6 card-padding0">
-          <div class="card margin0">
-            <div class="card-image">
-              <img (click)="PrintClick();" src="./assets/image/icon_print.png" alt="">
-            </div>
-          </div>
-        </div>
-        <div class="col s12 m6 xl6 card-padding0">
-          <div class="card margin0">
-            <div class="card-image">
-              <img (click)="fnBillClick();" src="./assets/image/icon_function.png" alt="">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="grey lighten-5 z-depth-1">
-          <div class="row margin0">
-            <input id="txtqty" class="right-align" type="text" [(ngModel)]="qty" materialize="updateTextFields" minlength="1">
-          </div>
-          <div class="row margin0">
-            <div class="card margin0">
-              <div class="card-image col s4 card-padding0">
-                <img (click)="addNum(1);" src="./assets/image/b_1.jpg" alt="" class="responsive-img">
-                <!-- notice the "circle" class -->
-              </div>
-            </div>
-            <div class="card margin0">
-              <div class="card-image col s4 card-padding0">
-                <img (click)="addNum(2);" src="./assets/image/b_2.jpg" alt="" class="responsive-img">
-                <!-- notice the "circle" class -->
-              </div>
-            </div>
-            <div class="card margin0">
-              <div class="card-image col s4 card-padding0">
-                <img (click)="addNum(3);" src="./assets/image/b_3.jpg" alt="" class="responsive-img">
-                <!-- notice the "circle" class -->
-              </div>
-            </div>
-
-          </div>
-          <div class="row margin0">
-            <div class="card margin0">
-              <div class="card-image col s4 card-padding0">
-                <img (click)="addNum(4);" src="./assets/image/b_4.jpg" alt="" class="responsive-img">
-                <!-- notice the "circle" class -->
-              </div>
-            </div>
-            <div class="card margin0">
-              <div class="card-image col s4 card-padding0">
-                <img (click)="addNum(5);" src="./assets/image/b_5.jpg" alt="" class="responsive-img">
-                <!-- notice the "circle" class -->
-              </div>
-            </div>
-            <div class="card margin0">
-              <div class="card-image col s4 card-padding0">
-                <img (click)="addNum(6);" src="./assets/image/b_6.jpg" alt="" class="responsive-img">
-                <!-- notice the "circle" class -->
-              </div>
-            </div>
-          </div>
-          <div class="row margin0">
-            <div class="card margin0">
-              <div class="card-image col s4 card-padding0">
-                <img (click)="addNum(7);" src="./assets/image/b_7.jpg" alt="" class="responsive-img">
-                <!-- notice the "circle" class -->
-              </div>
-            </div>
-            <div class="card margin0">
-              <div class="card-image col s4 card-padding0">
-                <img (click)="addNum(8);" src="./assets/image/b_8.jpg" alt="" class="responsive-img">
-                <!-- notice the "circle" class -->
-              </div>
-            </div>
-            <div class="card margin0">
-              <div class="card-image col s4 card-padding0">
-                <img (click)="addNum(9);" src="./assets/image/b_9.jpg" alt="" class="responsive-img">
-                <!-- notice the "circle" class -->
-              </div>
-            </div>
-          </div>
-          <div class="row margin0">
-            <div class="card margin0">
-              <div class="card-image col s4 card-padding0">
-                <img (click)="clearNum();" src="./assets/image/b_CE.jpg" alt="" class="responsive-img">
-                <!-- notice the "circle" class -->
-              </div>
-            </div>
-            <div class="card margin0">
-              <div class="card-image col s4 card-padding0">
-                <img (click)="addNum(0);" src="./assets/image/b_0.jpg" alt="" class="responsive-img">
-                <!-- notice the "circle" class -->
-              </div>
-            </div>
-            <div class="card margin0">
-              <div class="card-image col s4 card-padding0">
-                <img (click)="delNum();" src="./assets/image/b_backspace.jpg" alt="" class="responsive-img">
-                <!-- notice the "circle" class -->
+              <div class="card-content card-padding0  center">
+                <a><span class="card-title font-menu card-padding0 btn grey darken-3">{{item.name}}</span></a>
               </div>
             </div>
           </div>
         </div>
+
       </div>
     </div>
-
 
 
   </div>

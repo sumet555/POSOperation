@@ -1,0 +1,150 @@
+
+.card-padding1{
+    padding:1px;
+}
+.card-padding0{
+    padding:0px;
+}
+.setmargin-top{
+    margin-top:10px;
+}
+.containerset{
+    margin-top:50px;
+}
+.font-menu{
+    font-size: 17px;
+}
+.height100{
+  height: 100%;  
+}
+.pad{
+    padding: 0 0.25rem;
+}
+.margin0{
+    margin:0px;
+}
+.imgnumsize{
+    width:50px;
+    height: 50px;
+}
+input[type=text]{
+    margin:0px;
+}
+.pre {
+    background: no-repeat url("/assets/image/bb_pre1.png");
+    background-position: center;
+    width: 20px;
+    height:40px;
+    border: 0;
+    background-color:black;
+  }
+
+  .next {
+    background: no-repeat url("/assets/image/bb_next1.png");
+    background-position: center;
+    width: 10px;
+    height:40px;
+    border: 0;
+    background-color:black;
+  }
+  .cover {
+    background: no-repeat url("/assets/image/icon_customer_black.png");
+    background-position: center;
+    width: 10px;
+    height:40px;
+    border: 0;
+    background-color:grey lighten-1;
+  }
+  .fontbody{
+    font-weight:normal;
+}
+.btnfn{
+    height: 50px;
+}
+.iconfn{
+    padding-right: 5px;
+    padding-top:5px;
+}
+.btnNewbill{
+    font-size:17px;
+}
+.texttransform{
+    text-transform: inherit;
+}
+.btnfnfbill{
+    width:60px;
+    height: 60px;
+    padding-top:10px;
+    border-radius: 20%;
+}
+.btndone{
+    width:100px;
+    height: 100px;
+    padding-top:30px;
+}
+.btnnum{
+    width:110px;
+    height: 95px;
+    text-align: center;
+    padding-top: 30px;
+    font-size: 40px;
+}
+.fontpayment{
+    color:#0d47a1;
+    font-weight: bold;
+}
+.fonttitle{
+    font-weight: bold;
+    font-size: 20px;
+}
+@media only screen and (device-width: 768px) {
+    .detailheight{
+        height: 330px;
+      }
+      .tbodyheight{
+        height: 300px;
+      }
+      .body {
+        display: flex;
+        min-height: 89vh;
+        flex-direction: column;
+      }
+      main {
+        flex: 1 0 auto;
+      }
+  }
+  @media only screen  and (max-width: 320px) {
+    .detailheight{
+        height: 120px;
+      }
+      .tbodyheight{
+        height: 90px;
+      }
+      .body {
+        display: flex;
+        min-height: 89vh;
+        flex-direction: column;
+      }
+      main {
+        flex: 1 0 auto;
+      }
+      .btnChange{
+        text-align:right;
+        color:red;
+        font-weight: bold;
+    }
+    .btnAmount{
+        text-align:right;
+        color:black;
+        font-weight: bold;
+    }
+    .btnBalance{
+        text-align:right;
+        color:blue;
+        font-weight: bold;
+    }
+    input[type=text]{
+        margin:0px;
+        font-size: 40px;
+    }
+  }

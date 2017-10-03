@@ -1,0 +1,256 @@
+<div class=" col s12 l6 xl6 card-padding0 body" (window:resize)="onResize($event)">
+  
+      <!-- <div class="row ">
+        <a (click)="showMenu();"  class="button-collapse hide-on-large-only"><i class="material-icons ">menu</i></a> 
+        <span class="right footertable"> Outlet: <span class="blue-text">{{outlet}}</span></span>
+      </div> -->
+  
+      <div id="pMenu" *ngIf="pMenu">
+  
+        <div *ngIf="pGroup" class="row">
+          <div class="row">
+            <!-- <nav class="navwidth " >
+                    <div class="nav-wrapper">
+                      <form>
+                        <div class="input-field ">
+                          <input id="search" name="search" type="search"  [(ngModel)]="searchText" required>
+                          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                          <i class="material-icons">search</i>
+                        </div>
+                      </form>
+                    </div>
+                  </nav> -->
+          </div>
+          <div class="col s6 m3 l3 xl3 pad" *ngFor="let item of groupData">
+            <div class="card">
+              <div class="card-image">
+                <img (click)="GroupClick(item.gname);" [src]="item.image" alt="">
+              </div>
+              <div class="card-content card-padding0  center">
+                <a (click)="GroupClick(item.gname);"><span class="card-title font-menu card-padding0 btn grey darken-3">{{item.gname}}</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div id="pSubGroup" *ngIf="pSubGroup" class="row ">
+          <div class="row">
+            <!-- <nav class="navwidth ">
+              <div class="nav-wrapper">
+                <form>
+                  <div class="input-field ">
+                    <input id="search" name="search" type="search" [(ngModel)]="searchText" required>
+                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                    <i class="material-icons">find_in_page</i>
+                  </div>
+                </form>
+              </div>
+            </nav> -->
+          </div>
+          <div class="col s6 m3 l3 xl3 pad" *ngFor="let item of subGroup">
+            <div class="card">
+              <div class="card-image">
+                <img (click)="SubGroupClick(item.subname);" [src]="item.image" alt="">
+              </div>
+              <div class="card-content card-padding0  center">
+                <a (click)="SubGroupClick(item.subname);"><span class="card-title font-menu card-padding0 btn grey darken-3">{{item.subname}}</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div id="pItem" *ngIf="pItem" class="row ">
+          <div class="row">
+            <!-- <nav class="navwidth ">
+              <div class="nav-wrapper">
+                <form>
+                  <div class="input-field ">
+                    <input id="search" name="search" type="search" [(ngModel)]="searchText" required>
+                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                    <i class="material-icons">find_in_page</i>
+                  </div>
+                </form>
+              </div>
+            </nav> -->
+          </div>
+          <div class="col s6 m3 l3 xl3 pad" *ngFor="let item of item">
+            <div class="card">
+              <div class="card-image">
+                <img (click)="itemClick(item.itemname);" [src]="item.image" alt="">
+              </div>
+              <div class="card-content card-padding0  center">
+                <a (click)="itemClick(item.itemname);"><span class="card-title font-menu card-padding0 btn grey darken-3">{{item.itemname}}</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div *ngIf="pfnBill" class="row">
+          <!-- <div class="col s6 m3 l6 xl3 pad" *ngFor="let item of fnBillData">
+              <div class="card">
+                <div class="card-image">
+                  <img  [src]="item.image" alt="">
+                </div>
+                <div class="card-content card-padding0  center">
+                  <a ><span class="card-title font-menu card-padding0 btn grey darken-3">{{item.name}}</span></a>
+                </div>
+              </div>
+            </div> -->
+          <div class="col s12 pad">
+            <div class="container">
+              <div class="row">
+                <div class="col s6">
+                  Amount
+                </div>
+                <div class="col s3">
+                  Change
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field">
+                  <div class="col s6">
+                    <input id="txtamount" type="text" [(ngModel)]="amount" style="text-align:right" materialize="updateTextFields" minlength="1">
+                  </div>
+  
+                  <div class="col s3">
+                    <input id="txtchange" type="text" [(ngModel)]="change" style="text-align:right" materialize="updateTextFields" minlength="1">
+                  </div>
+                  <div class="col s3">
+                  <a class="btn btn-padding   blue texttransform">Done</a>
+                </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="card-panel grey lighten-5 z-depth-1 col s9 ">
+                  <div class="row margin0">
+                    <div class="card margin0">
+                      <div class="card-image  col s4 card-padding0">
+                        <img (click)="addNum(1);" src="./assets/image/b_1.jpg" alt="" class="responsive-img">
+                        <!-- notice the "circle" class -->
+                      </div>
+                    </div>
+                    <div class="card margin0">
+                      <div class="card-image  col s4 card-padding0">
+                        <img (click)="addNum(2);" src="./assets/image/b_2.jpg" alt="" class="responsive-img">
+                        <!-- notice the "circle" class -->
+                      </div>
+                    </div>
+                    <div class="card margin0">
+                      <div class="card-image  col s4 card-padding0">
+                        <img (click)="addNum(3);" src="./assets/image/b_3.jpg" alt="" class="responsive-img">
+                        <!-- notice the "circle" class -->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row margin0">
+                    <div class="card margin0">
+                      <div class="card-image  col s4 card-padding0">
+                        <img (click)="addNum(4);" src="./assets/image/b_4.jpg" alt="" class="responsive-img">
+                        <!-- notice the "circle" class -->
+                      </div>
+                    </div>
+                    <div class="card margin0">
+                      <div class="card-image  col s4 card-padding0">
+                        <img (click)="addNum(5);" src="./assets/image/b_5.jpg" alt="" class="responsive-img">
+                        <!-- notice the "circle" class -->
+                      </div>
+                    </div>
+                    <div class="card margin0">
+                      <div class="card-image  col s4 card-padding0">
+                        <img (click)="addNum(6);" src="./assets/image/b_6.jpg" alt="" class="responsive-img">
+                        <!-- notice the "circle" class -->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row margin0">
+                    <div class="card margin0">
+                      <div class="card-image  col s4 card-padding0">
+                        <img (click)="addNum(7);" src="./assets/image/b_7.jpg" alt="" class="responsive-img">
+                        <!-- notice the "circle" class -->
+                      </div>
+                    </div>
+                    <div class="card margin0">
+                      <div class="card-image  col s4 card-padding0">
+                        <img (click)="addNum(8);" src="./assets/image/b_8.jpg" alt="" class="responsive-img">
+                        <!-- notice the "circle" class -->
+                      </div>
+                    </div>
+                    <div class="card margin0">
+                      <div class="card-image  col s4 card-padding0">
+                        <img (click)="addNum(9);" src="./assets/image/b_9.jpg" alt="" class="responsive-img">
+                        <!-- notice the "circle" class -->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row margin0">
+                    <div class="card margin0">
+                      <div class="card-image  col s4 card-padding0">
+                        <img (click)="clearNum();" src="./assets/image/b_CE.jpg" alt="" class="responsive-img">
+                        <!-- notice the "circle" class -->
+                      </div>
+                    </div>
+                    <div class="card margin0">
+                      <div class="card-image  col s4 card-padding0">
+                        <img (click)="addNum(0);" src="./assets/image/b_0.jpg" alt="" class="responsive-img">
+                        <!-- notice the "circle" class -->
+                      </div>
+                    </div>
+                    <div class="card margin0">
+                      <div class="card-image  col s4 card-padding0">
+                        <img (click)="delNum();" src="./assets/image/b_backspace.jpg" alt="" class="responsive-img">
+                        <!-- notice the "circle" class -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col s6 l4 xl3 ">
+                  <a class="btn btn-padding  col s12 xl12 blue texttransform">Cash</a>
+                </div>
+                <div class="col s6 l4 xl3 ">
+                  <a class="btn btn-padding  col s12 xl12 blue texttransform">Credit</a>
+                </div>
+                <div class="col s6 l4 xl3 ">
+                    <a class="btn btn-padding  col s12 xl12 blue texttransform">Officer</a>
+                </div>
+                <div class="col s6 l6 xl3 padbtnentertain">
+                    <a class="btn btn-padding ard-padding0 col s12 xl12 blue texttransform">Entertain</a>
+                </div>
+              </div>
+              <div class="row">
+                  <div class="col s6 l6 xl6 ">
+                    <a class="btn btn-padding  col s12 xl12 blue texttransform">Hotel Offline</a>
+                  </div>
+                  <div class="col s6 l6 xl6 ">
+                      <a class="btn btn-padding  col s12 xl12 blue texttransform">Hotel Guest</a>
+                    </div>
+                  
+                </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- <div *ngIf="pfnItem" class="row ">
+          <div class="col s6 m3 l6 xl4 pad" *ngFor="let item of fnItemData">
+            <div class="card">
+              <div class="card-image">
+                <img [src]="item.image" alt="">
+              </div>
+              <div class="card-content card-padding0  center">
+                <a><span class="card-title font-menu card-padding0 btn grey darken-3">{{item.name}}</span></a>
+              </div>
+            </div>
+          </div>
+        </div> -->
+  
+      </div>
+    </div>
+    <!-- <nav class="nav-extended show hide-on-large-only">
+        <div class="nav-content">
+          <ul class="tabs tabs-transparent">
+            <li class="tab"><a id="take" (click)="takeOrder();">Menu</a></li>
+            <li class="tab"><a id="bill" (click)="billDetail();">Bill Detail</a></li>
+          </ul>
+        </div>
+      </nav> -->

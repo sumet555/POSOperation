@@ -22,6 +22,10 @@ import { ZoneComponent } from './zone/zone.component';
 import { TableComponent } from './table/table.component';
 import { BillinformationComponent } from './billinformation/billinformation.component';
 import { PopupTableComponent } from './popup-table/popup-table.component';
+import { SplitbillComponent } from './splitbill/splitbill.component';
+import { PopupProductComponent } from './popup-product/popup-product.component';
+import { PopupPaymentComponent } from './popup-payment/popup-payment.component';
+import { TestmenuComponent } from './testmenu/testmenu.component';
 
 // AoT requires an exported function for factories
 export function createTranslateLoader(http: HttpClient) {
@@ -39,7 +43,11 @@ export function createTranslateLoader(http: HttpClient) {
     ZoneComponent,
     TableComponent,
     BillinformationComponent,
-    PopupTableComponent
+    PopupTableComponent,
+    SplitbillComponent,
+    PopupProductComponent,
+    PopupPaymentComponent,
+    TestmenuComponent
   ],
   imports: [
     MaterializeModule,

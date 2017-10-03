@@ -1,5 +1,6 @@
 import { Component, OnInit, Pipe } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router'
+import{Http} from '@angular/http'
 @Component({
   selector: 'app-billinformation',
   templateUrl: './billinformation.component.html',
@@ -9,22 +10,23 @@ import { Router, ActivatedRoute } from '@angular/router'
   name: 'myfilter'
 })
 export class BillinformationComponent implements OnInit {
-
+  innerWidth: any;
   constructor(private router: Router,
-    private activatedRoute: ActivatedRoute) { }
+    private activatedRoute: ActivatedRoute
+  ,private http: Http) {
+    this.innerWidth = (window.screen.width);
+   }
   groupData = [{ "gname": "Food", "image": "./assets/image/food.jpg" }
     , { "gname": "Bev", "image": "./assets/image/bev.jpg" }
-    , { "gname": "Misc", "image": "./assets/image/BG-blue.jpg" }
+    , { "gname": "Bakery", "image": "./assets/image/bakery.jpg" }
     , { "gname": "Wine", "image": "./assets/image/wine.jpg" }
-    , { "gname": "dessert", "image": "./assets/image/BG-blue.jpg" }
-    , { "gname": "dessert", "image": "./assets/image/BG-blue.jpg" }
-    , { "gname": "dessert", "image": "./assets/image/BG-blue.jpg" }
   ];
 
   subgroupData = [{ "gname": "Food", "subname": "Salad", "image": "./assets/image/salad.jpg" }
     , { "gname": "Food", "subname": "Soup", "image": "./assets/image/soup.jpg" },
   { "gname": "Food", "subname": "Noodles", "image": "./assets/image/noodles.jpg" }
-    , { "gname": "Misc", "subname": "Misc", "image": "./assets/image/BG-blue.jpg" }
+    , { "gname": "Bakery", "subname": "Cake", "image": "./assets/image/cake.jpg" }
+    , { "gname": "Bakery", "subname": "Bread", "image": "./assets/image/bread.jpg" }
     , { "gname": "Bev", "subname": "Vodka", "image": "./assets/image/vodka.jpg" }
     , { "gname": "Wine", "subname": "Wine", "image": "./assets/image/wine.jpg" }
   ];
@@ -33,7 +35,8 @@ export class BillinformationComponent implements OnInit {
   { "subname": "Soup", "itemname": "Soup", "image": "./assets/image/soup.jpg", "price": 120 },
   { "subname": "Vodka", "itemname": "Vodka", "image": "./assets/image/vodka.jpg", "price": 200 },
   { "subname": "Wine", "itemname": "Wine", "image": "./assets/image/wine.jpg", "price": 150 },
-  { "subname": "Misc", "itemname": "Misc", "image": "./assets/image/BG-blue.jpg", "price": 100 }
+  { "subname": "Bread", "itemname": "Bread", "image": "./assets/image/bread.jpg", "price": 50 },
+  { "subname": "Cake", "itemname": "Cake", "image": "./assets/image/cake.jpg", "price": 100 }
   ];
   fnItemData = [
     { "name": "Condiment", "image": "./assets/image/BGred.jpg" }
@@ -76,17 +79,21 @@ export class BillinformationComponent implements OnInit {
   pMenu: boolean = true;
   billData = [];
   outlet: string;
+  amount:number;
+  change:number;
+  balance:number;
+  salemodeid:number;
   ngOnInit() {
 
     this.activatedRoute.params.subscribe(params => {
       if (params['table']) {
         let table = params["table"];
         this.table = table;
-        let salemodeid = params["salemode"];
+        this.salemodeid = params["salemode"];
         this.tableid = table + "/01";
         this.saletype = params["saletype"];
         this.cover = params["cover"];
-        this.SetSaleMode(salemodeid);
+        this.SetSaleMode(this.salemodeid);
       }
     });
     let item = JSON.parse(localStorage.getItem("billData"));
@@ -96,6 +103,10 @@ export class BillinformationComponent implements OnInit {
     if (billdata != null) {
       this.billData = billdata;
       this.calTotal();
+      this.balance=this.total;
+      this.amount=this.total;
+      this.change=this.amount-this.balance;
+      this.change = this.change < 0 ? 0 : this.change;
     }
 
     this.outlet = localStorage.getItem("outlet");
@@ -133,6 +144,7 @@ export class BillinformationComponent implements OnInit {
       this.pfnBill = false;
     
   }
+
   gMenu() {
     this.pSubGroup = false;
     this.pGroup = true;
@@ -161,12 +173,13 @@ export class BillinformationComponent implements OnInit {
       let item = JSON.parse(localStorage.getItem("billData"));
 
       if (item == null) {
-        let itemAdd: any[] = [{ "itemName": itemname, "Price": itemSelect[0].price * this.qty, "qty": this.qty, "seat": 1, "table": this.table }]
+        let itemAdd: any[] = [{ "itemName": itemname, "each": itemSelect[0].price , "Price": itemSelect[0].price * this.qty, "qty": this.qty, "seat": 1, "table": this.table }]
         item = itemAdd;
       }
       else {
         let itemAdd = {
           "itemName": itemname
+          , "each": itemSelect[0].price 
           , "Price": itemSelect[0].price * this.qty
           , "qty": this.qty
           , "seat": 1
@@ -180,16 +193,16 @@ export class BillinformationComponent implements OnInit {
     
   }
   clearNum() {
-    this.qty = 0;
+    this.amount = 0;
   }
   delNum() {
-    let num = this.qty.toString().substring(0, this.qty.toString().length - 1);
+    let num = this.amount.toString().substring(0, this.amount.toString().length - 1);
     num = num == "" ? "0" : num;
-    this.qty = Number(num);
+    this.amount = Number(num);
   }
   addNum(number) {
-    let num = this.qty.toString() + number;
-    this.qty = Number(num);
+    let num = this.amount.toString() + number;
+    this.amount = Number(num);
   }
   showMenu() {
     this.pMenu = !this.pMenu;
@@ -200,8 +213,29 @@ export class BillinformationComponent implements OnInit {
       $("#pMenu").addClass("hide-on-med-and-down");
     }
   }
+  numdes(){
+    this.qty=this.qty==1?1:this.qty-1;
+  }
+  numins(){
+    this.qty=this.qty+1;
+  }
   PrintClick() {
     this.router.navigate(['', 'table', this.table]);
+  }
+  PaymentClick(){
+    if(this.innerWidth>768){
+      this.fnBillClick();
+    }
+    else{
+      this.router.navigate(['', 'popup-payment', this.salemodeid,this.saletype,this.table,this.cover,this.balance,this.amount]);
+    }
+    
+  }
+  SplitBill(){
+    this.router.navigate(['', 'splitbill', this.salemodeid,this.saletype,this.table,this.cover]);
+  }
+  onResize(event){
+    this.innerWidth= event.target.innerWidth; 
   }
   calTotal() {
     let total = 0;
@@ -211,5 +245,9 @@ export class BillinformationComponent implements OnInit {
       }
     }
     this.total = total;
+  }
+  Change(){
+    this.change=this.amount-this.balance;
+    this.change = this.change < 0 ? 0 : this.change;
   }
 }

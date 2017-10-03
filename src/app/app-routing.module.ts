@@ -10,6 +10,10 @@ import  {TableComponent} from './table/table.component'
 import {PopupTableComponent} from './popup-table/popup-table.component'
 import {BillinformationComponent} from './billinformation/billinformation.component'
 import {BillinformationAreaComponent} from './billinformation-area/billinformation-area.component'
+import {SplitbillComponent} from './splitbill/splitbill.component'
+import {PopupProductComponent} from './popup-product/popup-product.component'
+import {PopupPaymentComponent} from './popup-payment/popup-payment.component'
+import { TestmenuComponent } from './testmenu/testmenu.component';
 const routes: Routes = [
   {
     path: '',
@@ -56,6 +60,45 @@ const routes: Routes = [
     children: [
       {
         path:'billinformation/:salemode/:saletype/:table/:cover',component:BillinformationComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component:SplitbillComponent,
+    children: [
+      {
+         path:'splitbill/:salemode/:saletype/:table/:cover',component:SplitbillComponent
+        //path:'splitbill',component:SplitbillComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component:BillinformationAreaComponent,
+    children: [
+      {
+        // path:'splitbill/:salemode/:saletype/:table/:cover',component:SplitbillComponent
+        path:'popup-product/:salemode/:saletype/:table/:cover',component:PopupProductComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component:BillinformationAreaComponent,
+    children: [
+      {
+        // path:'splitbill/:salemode/:saletype/:table/:cover',component:SplitbillComponent
+        path:'popup-payment/:salemode/:saletype/:table/:cover/:balance/:amount',component:PopupPaymentComponent
+      }
+    ]
+  },
+  {
+    path: '',
+    component:TestmenuComponent,
+    children: [
+      {
+        path:'testmenu',component:TestmenuComponent
       }
     ]
   }
